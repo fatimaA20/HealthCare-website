@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block  content %}
+
+<h1> Department List </h1>
+
+{% for department in department_list %}
+<a href="{% url 'departments_detail' department.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title"> {{department.name}} </span>
+            <p class="card-text"> {{department.description}} </p>
+        </div>
+    </div>
+</a>
+{% endfor %}
+{% endblock  %}

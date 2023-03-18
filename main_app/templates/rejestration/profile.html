@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1> Profile</h1>
+
+{% load static %} 
+<img  width="180px" height="180px" src={% static profile.image|cut:'main_app/static/profile' %} />
+<p>{{user.username}}</p>
+<p>{{user.email}}</p>
+<button type="submit" >Edit profile</button>
+
+{% endblock %}

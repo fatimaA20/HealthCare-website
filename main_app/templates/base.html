@@ -1,0 +1,53 @@
+<!-- include css file from here bcz it's static -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Collector</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+    <header class="navbar-fixed">
+        <nav>
+            <div class="'nav-wapper">
+
+                <ul>
+                    <li><a href="{% url 'home' %}" class="left brand-logo"> &nbsp; &nbsp; Cat Collector</a></li>
+                </ul>
+ 
+                <ul class="right">
+                {% if user.is_authenticated %}
+                    <li>Welcome <span style="color:honeydew">{{ request.user.usernam }} </span></li>
+                    <li><a href="{% url 'doctors_create' %}">Add a doctor</a></li>
+                    <li><a href="{% url 'doctors_index' %}">View All My doctors</a></li>
+                    <li><a href="{% url 'departments_create' %}">Add a departments</a></li>
+                    <li><a href="{% url 'departments_index' %}">View All departments</a></li>
+                    <li><a href="{% url 'logout' %}">LogOut</a></li>
+                {% else %} 
+                    <li><a href="{% url 'signup' %}">SignUp</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+               {% endif %}
+             </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content%}
+        {% endblock %}
+    </main>
+
+    <footer class="page-footer">
+        <!-- non breakable space -->
+        <div class="right">All  Rights Reserved, &copy; 2023 Cat Collector &nbsp;</div>
+    </footer>
+</body>
+
+</html>
