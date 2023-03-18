@@ -19,12 +19,12 @@
             <div class="'nav-wapper">
 
                 <ul>
-                    <li><a href="{% url 'home' %}" class="left brand-logo"> &nbsp; &nbsp; Cat Collector</a></li>
+                    <li><a href="{% url 'home' %}" class="left brand-logo"> &nbsp; &nbsp; Health Care </a></li>
                 </ul>
  
                 <ul class="right">
                 {% if user.is_authenticated %}
-                    <li>Welcome <span style="color:honeydew">{{ request.user.usernam }} </span></li>
+                    <li>Welcome <span style="color:honeydew">{{ request.user.username }} </span></li>
                     <li><a href="{% url 'doctors_create' %}">Add a doctor</a></li>
                     <li><a href="{% url 'doctors_index' %}">View All My doctors</a></li>
                     <li><a href="{% url 'departments_create' %}">Add a departments</a></li>
