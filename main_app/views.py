@@ -1,29 +1,23 @@
 from django.shortcuts import render, redirect
-from .models import Department, Doctor, Profile
-# this should be used to class based
+from .models import Department, Doctor
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-# here no edit bcz it just return data from database - No change in DB
 from django.views.generic import ListView, DetailView
-# these 2 lines was imported to create form of signup
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
-# Create your views here.
-
-
+# Home view
 def home(request):
     return render(request, 'home.html')
 
-
+# Signup view
 def signup(request):
     error_message = ''
     if request.method == 'POST':
-        # Make a 'user' form object with the data from the browser
+        # Create a 'UserCreationForm' object with the data from the browser
         form = UserCreationForm(request.POST)
-
         if form.is_valid():
-            # save user to DB
+            # Save user to the database
             user = form.save()
             # Log in the user automatically once they sign up
             login(request, user)
@@ -35,9 +29,7 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
-# Departments CBV's
-
-
+# Departments class-based views
 class DepartmentsList(ListView):
     model = Department
 
@@ -61,8 +53,7 @@ class DepartmentsDelete(DeleteView):
     model = Department
     success_url = '/departments/'
 
-
-# Doctor CBV's
+# Doctor class-based views
 class DoctorsList(ListView):
     model = Doctor
 
@@ -73,14 +64,7 @@ class DoctorsDetail(DetailView):
 
 class DoctorsCreate(CreateView):
     model = Doctor
-    # profile = Profile.objects.filter()
     fields = '__all__'
-
-    def get_context_data(self,  **kwargs):
-      context = super( DoctorsCreate,self).get_context_data(**kwargs)
-      context['profile_detail'] = Profile.objects.all()
-      return context
-
 
 class DoctorsUpdate(UpdateView):
     model = Doctor
