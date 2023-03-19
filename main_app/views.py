@@ -69,11 +69,12 @@ class DoctorsDetail(DetailView):
 
 class DoctorsCreate(CreateView):
   model = Doctor
-  fields = '__all__'
+  # fields = '__all__'
+  fields=['first_name','last_name','username','password','email','mobile_Number','shift','description','department']
 
 class DoctorsUpdate(UpdateView):
   model = Doctor
-  fields = '__all__'
+  fields =  fields=['image','first_name','last_name','username','password','email','mobile_Number','shift','description','department']
 
 
 class DoctorsDelete(DeleteView):
