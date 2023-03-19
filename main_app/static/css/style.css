@@ -1,20 +1,213 @@
-body {
-    background-color: rgb(219, 226, 227);
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+
+.sanjid-header{
+
+}
+.sanjid-header .app {
+	font-size: 23px;
+	font-weight: 600;
+}
+.app span {
+	display: inline-block;
+	background: #617ce2;
+	color: white;
+	height: 55px;
+	width: 56px;
+	font-size: 31px;
+	text-align: center;
+	border-radius: 7px;
+}
+.sanjid-header li {
+	padding: 11px;
 }
 
-main {
-    flex: 1 0 auto;
+
+
+.slider-section{
+  background-image: url(https://i.ibb.co/r0JphkC/mbr-10.jpg);
+  padding: 200px 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 1;
+}
+.slider-section::after{
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgb(0, 0, 0, .5);
+    z-index: -1;
+}
+.slider-caption{
+
+}
+.slider-caption h4{
+
+}
+.slider-caption h2{
+    margin: 30px 0;
+
+}
+img{
+    max-width: 100%;
+}
+.shihab {
+	width: 193px;
+	font-weight: 600;
+    background: #579830;
+    color: white;
+}
+.activeity-content {
+	margin-top: 115px;
+	margin-left: 144px;
+}
+.activeity-content p {
+	font-size: 22px;
+	line-height: 2.8rem;
+}
+.activeity-content h1 {
+	font-weight: 400;
+	margin-bottom: 22px;
+}
+/* fitire section */
+.fiture-items{
+    height: 250px;
+    box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.8);
+
+}
+.fitute-image{
+
+    width: 40%;
+    overflow: hidden;
+
+}
+.fitute-image img {
+	width: auto !important;
+	height: 100%;
+	max-width: inherit;
+	margin-left: -82px;
+}
+.fiture-content{
+
+    width: 60%;
+}
+.protofolio{
+
 }
 
-footer.page-footer {
-    padding-top: 0;
-    text-align: right;
+.protofolio-item a{
+    position: relative;
+    display: block;
+}
+.protofolio-item a::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(97, 124, 226,.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: .5s;
 }
 
-.flex-container {
-    display: flex;
-    justify-content: space-between;
-  }
+.protofolio-item:hover a::after{
+    opacity: 1;
+    visibility: visible;
+}
+
+.priceing-items{
+    background: #fff;
+    padding: 50px;
+    box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+
+}
+.priceing-items h2 {
+	font-size: 40px;
+}
+.priceing-items p {
+	color: #767676;
+	font-size: 20px;
+	margin-top: 32px;
+}
+.priceing-items ul {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+.priceing-items ul li {
+	margin: 25px 0;
+	font-size: 20px;
+	color: #767676;
+}
+.priceing-items-button{
+
+}
+.priceing-items ul li span {
+	color: #617ce2;
+	font-size: 22px;
+	font-weight: bold;
+	width: 37px;
+	display: inline-block;
+}
+.image-section {
+	width: 221px;
+	margin: auto;
+	margin-top: 32px;
+	display: inline-block;
+}
+.image-section img{
+    width: 80px;
+    display: inline-block;
+  
+}
+.fa.fa-quote-left {
+	margin-bottom: 15px;
+	font-size: 25px;
+}
+.what-do-content p{
+    
+        font-size: 20px;
+    
+
+}
+.image-details{
+    text-align: left;
+
+}
+/* about section */
+.about-section {
+    background: #f7f9ff;
+    padding: 100px 0;
+}
+.dolor p {
+	margin-top: 95px;
+}
+
+.programmer {
+	margin-top: 121px;
+}
+.card img {
+	width: 130px;
+	height: auto;
+	margin-top: -68px;
+	margin-left: 13px;
+}
+/* form section */
+.form-section .card {
+	box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.8);
+	padding: 31px;
+}
+/* footer section */
+.footer{
+    background: #f7f9ff;
+}
+.footer p {
+	font-size: 22px;
+    color: #767676;
+}
