@@ -14,13 +14,15 @@ SHIFTS = (
 class Profile (models.Model):
     user_role = models.CharField(max_length=100)
     mobile_Number = models.CharField(max_length=5000)
-    image = models.ImageField(upload_to='main_app/static/images/users',default='') 
+    image = models.ImageField(upload_to='main_app/static/images/users',default='default.jpg') 
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
         primary_key=True,
         related_name="user_contact"
     )    
+    def __str__(self):
+        return f'{self.user.username} Profile' #show how we want it to 
 
 class Patient (models.Model):
     blood = models.CharField(max_length=100)
