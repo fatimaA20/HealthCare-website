@@ -8,6 +8,7 @@ urlpatterns = [
 
     # signup rout
     path('accounts/signup/',views.signup , name='signup'),
+    # path('accounts/profile/',views.profile , name='profile'),
 
     # departments URL's
     path('departments/', views.DepartmentsList.as_view(), name='departments_index'),
