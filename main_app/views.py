@@ -1,68 +1,81 @@
-from django.shortcuts import render, redirect
-from .models import Department, Doctor
+from django.shortcuts import render , redirect
+from .models import Department ,Doctor 
+# this should be used to class based
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView, DetailView
+# here no edit bcz it just return data from database - No change in DB
+from django.views.generic import ListView , DetailView
+# these 2 lines was imported to create form of signup
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
-# Home view
-def home(request):
-    return render(request, 'home.html')
+# for user signup
+from .forms import CustomUserCreationForm
 
-# Signup view
+
+# Create your views here.
+
+def home(request):
+    return render(request,'home.html')
+
 def signup(request):
     error_message = ''
     if request.method == 'POST':
-        # Create a 'UserCreationForm' object with the data from the browser
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            # Save user to the database
             user = form.save()
-            # Log in the user automatically once they sign up
             login(request, user)
             return redirect('home')
         else:
             error_message = 'Invalid: Please Try Again!'
-    # If there's a bad post or get request
-    form = UserCreationForm()
+    else:
+        form = CustomUserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
-# Departments class-based views
+# Departments CBV's
 class DepartmentsList(ListView):
-    model = Department
+  model = Department
 
 class DepartmentsDetail(DetailView):
-    model = Department
+  model = Department
 
 class DepartmentsCreate(CreateView):
-    model = Department
-    fields = '__all__'
+  model = Department
+  fields = '__all__'
 
 class DepartmentsUpdate(UpdateView):
-    model = Department
-    fields = '__all__'
+  model = Department
+  fields = '__all__'
 
 class DepartmentsDelete(DeleteView):
-    model = Department
-    success_url = '/departments/'
+  model = Department
+  success_url = '/departments/'
 
-# Doctor class-based views
+
+# Doctor CBV's
 class DoctorsList(ListView):
-    model = Doctor
+  model = Doctor
 
 class DoctorsDetail(DetailView):
-    model = Doctor
+  model = Doctor
 
 class DoctorsCreate(CreateView):
-    model = Doctor
-    fields = '__all__'
+  model = Doctor
+  fields = '__all__'
 
 class DoctorsUpdate(UpdateView):
-    model = Doctor
-    fields = '__all__'
+  model = Doctor
+  fields = '__all__'
 
 class DoctorsDelete(DeleteView):
-    model = Doctor
-    success_url = '/doctors/'
+  model = Doctor
+  success_url = '/doctors/'
+
+
+
+
+
+
+
+
