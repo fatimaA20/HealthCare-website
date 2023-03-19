@@ -13,7 +13,7 @@ SHIFTS = (
 
 class Profile (models.Model):
     user_role = models.CharField(max_length=100)
-    mobile_Number = models.CharField(max_length=50)
+    mobile_Number = models.CharField(max_length=5000)
     image = models.ImageField(upload_to='main_app/static/images/users',default='') 
     user = models.OneToOneField(
         User,
@@ -38,7 +38,7 @@ class Patient (models.Model):
 
 class Department(models.Model):
     name = models.CharField(max_length=50)
-    brief = models.CharField(max_length=50)
+    brief = models.TextField(max_length=50)
     image = models.ImageField(upload_to='main_app/static/images/department',default='') 
 
     def __str__(self):
@@ -57,6 +57,7 @@ class Doctor (models.Model):
         Profile,
         on_delete=models.CASCADE,
         primary_key=True,
+
     )    
     description = models.TextField(max_length=5000)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, default='')

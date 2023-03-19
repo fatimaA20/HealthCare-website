@@ -7,7 +7,7 @@
 <a href="{% url 'doctors_detail' doctor.id %}">
     <div class="card">
         <div class="card-content">
-            <span class="card-title"> {{doctor.profile.mobile_Number}} </span>
+            {% comment %} <span class="card-title"> {{doctor.profile.mobile_Number}} </span> {% endcomment %}
             <p class="card-text"> {{doctor.description}} </p>
         </div>
     </div>
