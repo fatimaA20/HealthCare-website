@@ -16,55 +16,57 @@
     <!-- style.css -->
     <link rel="stylesheet" href="style.css">
 
-    <title>Hospital System </title>
+    <title>Hospital System</title>
   </head>
   <body>
+    <!-- logo image and size  -->
     <div class="header">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light sanjid-header">
+      <nav class="navbar navbar-expand-lg navbar-light 	bg-info  sanjid-header " style="background-color: #208075">
         <div class="container">
-          <!-- <a class="navbar-brand app" href="#"> <span><i class="fas fa-mobile-alt"></i></span> Apppamp theme</a> -->
           <!-- logo size -->
-          <a class="navbar-brand" href="#"> <span><i class="fas fa-home"></i></span> Hospital System</a>
-
-
-          <div class="collapse navbar-collapse justify-content-between ms-5" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-5 mb-2 mb-lg-0 sanjid-manu">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-              </li>
-              {% if user.is_authenticated %}
-                  <li class="nav-item"><a class="dropdown-item" href="{% url 'doctors_index' %}">View all Doctors</a></li>
-                  <li class="nav-item"><a class="dropdown-item" href="{% url 'doctors_create' %}">Add new Doctor</a></li>
-                  <li class="nav-item"><a href="{% url 'departments_create' %}">Add a departments</a></li>
-                  <li class="nav-item"><a href="{% url 'departments_index' %}">View All departments</a></li>
-                  <li class="nav-item"><a href="{% url 'logout' %}">LogOut</a></li>
-          {% else %} 
-                  <li class="nav-item"><a href="{% url 'signup' %}">SignUp</a></li>
-                  <li class="nav-item"><a href="{% url 'login' %}">Login</a></li>
-         {% endif %} 
-   </ul>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Our Department
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">General Check-Up</a></li>
-                  <li><a class="dropdown-item" href="#">Dermatology</a></li>
-                  <li><a class="dropdown-item" href="#">Dental</a></li>
-                  <li><a class="dropdown-item" href="#">Maternity</a></li>
-                  <li><a class="dropdown-item" href="#">Cardiology</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">24/7 Medical Unit</a></li>
-                </ul>
-              </li>
-            </ul>
+          <a class="navbar-item" >
+            <img src="https://i.ibb.co/YdTBsYx/DR-Roberts-Health-Clinic-1-removebg-preview-1.png" width="200" height="200">
+          </a>
+          <!-- navbar content -->
+                <div class="collapse navbar-collapse justify-content-between ms-5" id="navbarSupportedContent">
+                  <ul class="navbar-nav ms-5 mb-2 mb-lg-0 sanjid-manu">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Doctors
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">View All Doctors</a></li>
+                        <li><a class="dropdown-item" href="#">Add New Doctors</a></li>
+                        <li><a class="dropdown-item" href="#">Take Appoitment</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Departments
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">View All Departments</a></li>
+                        <li><a class="dropdown-item" href="#">Add New Departments</a></li>
+                        <li><a class="dropdown-item" href="#">Dental</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <a href="#" class="btn btn-outline-primary btn-lg fw-bold">Sign Up</a>
+                  
+           
+                </div>
+              </div>
+            </nav>
+      
           </div>
-        </div>
-      </nav>
-
-    </div>
     {% block content%}
     {% endblock %}
+
+
+    <!-- footer is here -->
     <div class="footer py-3 text-center">
         <div class="container">
           <div class="row">
