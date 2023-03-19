@@ -3,11 +3,12 @@ from . import views # dot(.) here mean root
 
 urlpatterns = [
     # Routes in Express , URLs in Django
-    # dont add / here this mean root
+    # DONT add / here this mean root
     path('', views.home, name='home') ,
 
     # signup rout
     path('accounts/signup/',views.signup , name='signup'),
+    # path('accounts/profile/',views.profile , name='profile'),
 
     # departments URL's
     path('departments/', views.DepartmentsList.as_view(), name='departments_index'),
@@ -16,10 +17,11 @@ urlpatterns = [
     path('departments/<int:pk>/update', views.DepartmentsUpdate.as_view(),name='departments_update'),
     path('departments/<int:pk>/delete/', views.DepartmentsDelete.as_view(), name='departments_delete'),
 
-    # doctorss URL's
+    # doctors URL's
     path('doctors/', views.DoctorsList.as_view(), name='doctors_index'),
     path('doctors/<int:pk>',views.DoctorsDetail.as_view(),name='doctors_detail'),
     path('doctors/create', views.DoctorsCreate.as_view(),name='doctors_create'),
     path('doctors/<int:pk>/update', views.DoctorsUpdate.as_view(),name='doctors_update'),
     path('doctors/<int:pk>/delete/', views.DoctorsDelete.as_view(), name='doctors_delete'),
+
 ]
