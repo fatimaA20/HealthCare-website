@@ -57,14 +57,13 @@ class Doctor (models.Model):
         Profile,
         on_delete=models.CASCADE,
         primary_key=True,
-        )    
-    description = models.TextField(max_length=5000)
 
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, default=1)
-    
+    )    
+    description = models.TextField(max_length=5000)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, default='')
+
     def get_absolute_url(self):
         return reverse('doctors_detail', kwargs ={'pk' : self.id})
-
 
 class appointment (models.Model):
     start_time:models.TimeField()
