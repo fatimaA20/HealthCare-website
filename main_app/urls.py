@@ -22,4 +22,5 @@ urlpatterns = [
     path('doctors/create', views.DoctorsCreate.as_view(),name='doctors_create'),
     path('doctors/<int:pk>/update', views.DoctorsUpdate.as_view(),name='doctors_update'),
     path('doctors/<int:pk>/delete/', views.DoctorsDelete.as_view(), name='doctors_delete'),
+
 ]
