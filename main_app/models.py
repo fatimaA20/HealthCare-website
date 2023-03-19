@@ -43,7 +43,7 @@ class Department(models.Model):
 
     def __str__(self):
         return self.name
-    #  for redirecting to toys details page - we use pk becuse we will use CBV's
+    #  for redirecting to toys details page - we use pk because we will use CBV's
     def get_absolute_url(self):
         return reverse('departments_detail', kwargs ={'pk' : self.id})
 

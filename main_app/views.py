@@ -42,7 +42,9 @@ class DepartmentsDetail(DetailView):
 
 class DepartmentsCreate(CreateView):
   model = Department
-  fields = '__all__'
+  # fields = '__all__'
+  fields = ['name','brief']
+
 
 class DepartmentsUpdate(UpdateView):
   model = Department
@@ -55,7 +57,7 @@ class DepartmentsDelete(DeleteView):
 
 # Doctor CBV's
 class DoctorsList(ListView):
-  model = Doctor
+  model = Doctor,Profile
 
 class DoctorsDetail(DetailView):
   model = Doctor
