@@ -238,3 +238,15 @@ img{
 	font-size: 22px;
     color: #767676;
 }
+.depart{
+	background-color: rgb(13, 0, 255);
+	align-items: center;
+}
+teal-text{
+	background-color: cyan;
+
+}
+dpp{
+	text-align: center;
+	background-color: #579830;
+}
