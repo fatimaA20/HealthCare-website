@@ -37,16 +37,21 @@ def signup(request):
 class DepartmentsList(ListView):
   model = Department
 
+
 class DepartmentsDetail(DetailView):
   model = Department
+
 
 class DepartmentsCreate(CreateView):
   model = Department
   fields = '__all__'
 
+
+
 class DepartmentsUpdate(UpdateView):
   model = Department
   fields = '__all__'
+
 
 class DepartmentsDelete(DeleteView):
   model = Department
@@ -57,16 +62,20 @@ class DepartmentsDelete(DeleteView):
 class DoctorsList(ListView):
   model = Doctor
 
+
 class DoctorsDetail(DetailView):
   model = Doctor
 
+
 class DoctorsCreate(CreateView):
   model = Doctor
-  fields = '__all__'
+  # fields = '__all__'
+  fields=['first_name','last_name','username','password','email','mobile_Number','shift','description','department']
 
 class DoctorsUpdate(UpdateView):
   model = Doctor
-  fields = '__all__'
+  fields =  fields=['image','first_name','last_name','username','password','email','mobile_Number','shift','description','department']
+
 
 class DoctorsDelete(DeleteView):
   model = Doctor
