@@ -9,6 +9,7 @@ urlpatterns = [
     # signup rout
     path('accounts/signup/',views.signup , name='signup'),
     path('accounts/profile/<int:user_id>',views.profile , name='profile'),
+    path('accounts/profile_detail/<int:user_id>',views.profile_detail , name='profile_detail'),
 
     # departments URL's
     path('departments/', views.DepartmentsList.as_view(), name='departments_index'),
