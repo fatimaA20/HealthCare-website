@@ -3,10 +3,12 @@
 <h1> Profile</h1>
 
 {% load static %} 
-<img  width="180px" height="180px" src={% static profile.image|cut:'main_app/static/profile' %} />
+<img  width="180px" height="180px" src={% static user.image|cut:'main_app/static/images' %} />
+
+<p>{{user.image}}</p>
 <p>{{user.username}}</p>
 <p>{{user.email}}</p>
-<button type="submit" >Edit profile</button>
+<button type="submit" ><a href ="{% url 'profile_detail' user.id %}" >Edit profile</a></button>
 
 {% endblock %}
 
