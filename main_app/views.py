@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from .models import Department ,Doctor , CustomUser
+from .models import Department ,Doctor , CustomUser ,SHIFTS
 # this should be used to class based
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -7,7 +7,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView , DetailView
 # these 2 lines was imported to create form of signup
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm 
+from .forms import CustomUserChangeForm
 
 # for user signup
 from .forms import CustomUserCreationForm
@@ -69,9 +70,18 @@ class DoctorsDetail(DetailView):
 
 class DoctorsCreate(CreateView):
   model = Doctor
-  # fields = '__all__'
   fields=['first_name','last_name','username','password','email','mobile_Number','shift','description','department']
 
+  def form_valid(self, form):
+        form.instance.user_role = 'Doctor'  # set the default value for user_role
+        return super().form_valid(form)
+  
+
+  
+  success_url = '/doctors/'
+
+
+  
 class DoctorsUpdate(UpdateView):
   model = Doctor
   fields =  fields=['image','first_name','last_name','username','password','email','mobile_Number','shift','description','department']
@@ -85,5 +95,15 @@ def profile (request , user_id):
    user = CustomUser.objects.get(id=user_id)
    return render(request, 'registration/profile.html',{'user' : user})
    
+def profile_detail(request , user_id):
+   user = CustomUser.objects.get(id=user_id)
+   form = CustomUserChangeForm()
+   return render(request, 'registration/profile_detail.html',{'user' : user , 'form' : form})
 
 
+# Appointment
+def AppointmentList():
+   pass
+
+def BookingAppointment(request, user_id):
+   pass

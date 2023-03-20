@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
 {% comment %} we add this if statement bcz we use this page to edit and creata toy  {% endcomment %}
 
 {% if object%}
@@ -10,10 +11,10 @@
 {% endif %}
 
 
-  <form action="" method="post" >
+  <form action="{% url 'doctors_create'%}" method="post" >
     <!-- Django requires the following for security purposes -->
     {% csrf_token %}
-   
+
     <table> {{ form.as_table }} </table>
     
     <input type="submit" value="Submit!" class="btn">

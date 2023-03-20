@@ -9,6 +9,7 @@ urlpatterns = [
     # signup rout
     path('accounts/signup/',views.signup , name='signup'),
     path('accounts/profile/<int:user_id>',views.profile , name='profile'),
+    path('accounts/profile_detail/<int:user_id>',views.profile_detail , name='profile_detail'),
 
     # departments URL's
     path('departments/', views.DepartmentsList.as_view(), name='departments_index'),
@@ -24,4 +25,7 @@ urlpatterns = [
     path('doctors/<int:pk>/update', views.DoctorsUpdate.as_view(),name='doctors_update'),
     path('doctors/<int:pk>/delete/', views.DoctorsDelete.as_view(), name='doctors_delete'),
 
+    # appointment URL's
+    path('accounts/<int:user_id>/appointment/<int:appointment_id>',views.AppointmentList,name='appointment_list'),
+    path('accounts/<int:user_id>/bookingappointment/',views.BookingAppointment,name='take_appointment'),
 ]
