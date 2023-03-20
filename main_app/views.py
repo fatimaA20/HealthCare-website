@@ -101,4 +101,9 @@ def profile_detail(request , user_id):
    return render(request, 'registration/profile_detail.html',{'user' : user , 'form' : form})
 
 
+# Appointment
+def AppointmentList():
+   pass
 
+def BookingAppointment(request, user_id):
+   pass

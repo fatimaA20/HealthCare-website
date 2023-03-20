@@ -25,4 +25,7 @@ urlpatterns = [
     path('doctors/<int:pk>/update', views.DoctorsUpdate.as_view(),name='doctors_update'),
     path('doctors/<int:pk>/delete/', views.DoctorsDelete.as_view(), name='doctors_delete'),
 
+    # appointment URL's
+    path('accounts/<int:user_id>/appointment/<int:appointment_id>',views.AppointmentList,name='appointment_list'),
+    path('accounts/<int:user_id>/bookingappointment/',views.BookingAppointment,name='take_appointment'),
 ]
