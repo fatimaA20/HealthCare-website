@@ -15,58 +15,50 @@
             <div class="card-body">
               <h3 class="card-title my-3">Please provide us with all your details</h3>
 
+     
+     
+ 
 
               
 
-              <!-- form email input -->
-              <!-- <div class="form-group">
+<div class="container" >
+  <div class="card center spacer ">
+    <h1 class="title text-center"> Register </h1>
+    <br><br>
 
-                
-                 -->
-
-                <div class="container">
-                  <div class="row">
-                    <div class="col">
-                      <form method="post" action="{% url 'signup' %}"></form>
-                      {% csrf_token %}{{ form.as_table }}
-                    </div>
-                  </div>
-                  <!-- <label for="username">User Name</label>
-                  <input name ="username"type="text"  class="form-control"  placeholder="user name" required>
-                  <br><br>
-
-                  <label for="firstname">First Name</label>
-                  <input name ="first_name"type="text"  class="form-control"  placeholder="first name" required>
-                  <br><br>
-                  <label for="lastname">Last Name</label>
-                  <input name ="last_name"type="text" class="form-control"  placeholder="last name" required>
-                  <br><br>
-
-                  <label for="email">Email</label>
-                  <input name ="email" type="email" class="form-control" name="email" required>
-                  <br><br>
-
-                  <label for="password">Password</label>
-                  <input name ="password"type="password" class="form-control" name="password" required>
-                  <br><br> -->
-                
-                  <input class="btn  btn-lg btn-info" type="submit" value="signup"> 
-                  
-                </form>
-              </div>
-            </div>
-           
-
-          </div>
-        
+    <form method="POST" action="." class="login-form spacer" id="signup-form">
+      <div class="row">
+        <div class="col">
+          {% csrf_token %}
+          {{form.first_name}}
         </div>
 
+        <div class="col">
+          {{form.last_name}}
+        </div>
       </div>
-        
-      
-   
+      <br><br>
+        <div class="col-12">
+          <label name="username" for="inputusername" class="form-label">User Name</label>
+        {{form.username}}
+        </div>
+         
+        <div class="col-12">
+          <label name="email" for="inputEmail" class="form-label">Email</label>
+          {{form.email}}
+        </div>
+
+        <div class="col-12">
+          <label name="password" for="inputPassword" class="form-label">Password</label>
+          {{form.password}}
+        </div>
+        <br><br>
+        <input class="btn  btn-lg btn-info" type="submit" value="signup"> 
+      </div>
+    
+    </form>
+
   </div>
 </div>
-
 
 {% endblock %}
