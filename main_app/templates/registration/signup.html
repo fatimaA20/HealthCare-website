@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {% block content %}
+{% load widget_tweaks %}
 
 
 <div class="contact-form py-5">
@@ -7,50 +8,52 @@
     {%if error_message%}
     <p class="">{{error_message}}</p>
     {% endif %}
-    <!-- <div class="row">
-      <div class="col">
-        <div class="contact-form-header text-center">
-        <h1>Sign Up</h1>
-        </div>
-      </div>
-    </div> -->
-    <div class="row">
-      <div class="col-xl-3">
 
-      </div>
       <div class="col-xl-6">
         <div class="form-section mt-5">
           <div class="card text-center border-0">
-
             <div class="card-body">
               <h3 class="card-title my-3">Please provide us with all your details</h3>
-              <!-- form email input -->
-              <div class="form-group">
-                <input type="text" method ="post" action="{% url 'signup' %}" class="form-control" id="first-name" placeholder="first name" required>
-                </div>
-                <input type="text" method ="post" action="{% url 'signup' %}" class="form-control" id="second-name" placeholder="second name" required>
-              </div>
-              <input type="text" method ="post" action="{% url 'signup' %}" class="form-control" id="name" placeholder="first name" required>
-                </div>
-              </div>
-<!-- 
-              <form method="POST" action="{% url 'signup' %}">
-                <input type="name" class="form-control form-control-lg mb-3" placeholder="First Name">
-              </form> -->
 
-
-              <div class="row mb-4">
-                <div class="col-xl-6">
-                  <input type="text" class="form-control form-control-lg plaintext" placeholder="name">
-                </div>
-                <div class="col-xl-6">
-                  <input type="text" class="form-control form-control-lg plaintext" placeholder="Phone number">
-                </div>
-              </div>
-              <textarea name="" class="form-control mb-4" placeholder="Massege"></textarea>
-              <button class="btn  btn-lg btn-info">Submit</button>
 
               
+
+              <!-- form email input -->
+              <!-- <div class="form-group">
+
+                
+                 -->
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <form method="post" action="{% url 'signup' %}"></form>
+                      {% csrf_token %}{{ form.as_table }}
+                    </div>
+                  </div>
+                  <!-- <label for="username">User Name</label>
+                  <input name ="username"type="text"  class="form-control"  placeholder="user name" required>
+                  <br><br>
+
+                  <label for="firstname">First Name</label>
+                  <input name ="first_name"type="text"  class="form-control"  placeholder="first name" required>
+                  <br><br>
+                  <label for="lastname">Last Name</label>
+                  <input name ="last_name"type="text" class="form-control"  placeholder="last name" required>
+                  <br><br>
+
+                  <label for="email">Email</label>
+                  <input name ="email" type="email" class="form-control" name="email" required>
+                  <br><br>
+
+                  <label for="password">Password</label>
+                  <input name ="password"type="password" class="form-control" name="password" required>
+                  <br><br> -->
+                
+                  <input class="btn  btn-lg btn-info" type="submit" value="signup"> 
+                  
+                </form>
+              </div>
             </div>
            
 
@@ -59,34 +62,11 @@
         </div>
 
       </div>
-      <div class="col-xl-3">
         
-      </div>
-    </div>
+      
+   
   </div>
 </div>
 
-
-    <h1>Sign Up</h1>
-    <div class="form-group">
-    <form method="post">
-        {% csrf_token %}
-        <label for="firstname">First Name</label>
-        <input type="text" action="{% url 'signup' %}" class="form-control"  placeholder="first name" required>
-        <!-- <input type="text" name="username" required> -->
-        <br><br>
-        <label for="email">Email:</label>
-        <input type="email" name="email" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required><br><br>
-        <button type="submit">Sign Up</button>
-    </form>
-    </div>
-
-
-<!-- 
-  {% csrf_token %} {{ form.as_p }}
-  <input type="submit" class="" value="Signup" />
-</form> -->
 
 {% endblock %}
