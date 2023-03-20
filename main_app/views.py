@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from .models import Department ,Doctor 
+from .models import Department ,Doctor , CustomUser
 # this should be used to class based
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -81,10 +81,9 @@ class DoctorsDelete(DeleteView):
   model = Doctor
   success_url = '/doctors/'
 
-
-
-
-
-
+def profile (request , user_id):
+   user = CustomUser.objects.get(id=user_id)
+   return render(request, 'registration/profile.html',{'user' : user})
+   
 
 
