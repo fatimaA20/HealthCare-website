@@ -26,6 +26,65 @@ footer.page-footer{
  */
 
 
+/* Maryam's Working for Front End & CSS*/
+
+/* Defining Global Variables Here */
+:root{
+    --frost-blue-color: #0050d5;
+    --light-blue-color: #16c5ff;
+    --dark-color: #202020;
+    --light-color: #fff;
+    --poppins-font: 'Poppins', sabs-serif;
+    --transition: all 0.3s ease-in-out;
+    --box-shadow: 0 0 15px 2px rgba(0,0,0,0.2)!important;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+}
+
+body{
+    font-size: 1.6rem;
+    line-height: 1.6;
+    font-family: var(--poppins-font);
+}
+
+img{
+    width: 100%;
+    display: block;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: var(--dark-color);
+}
+
+.bg-blue{
+    background-color: var(--frost-blue-color);
+}
+
+.bg-white{
+    background-color: var(--light-color);
+}
+.text-blue{
+    color: var(--frost-blue-color);
+}
+
+
+
+
+
+
 /* header section */
 
 
@@ -78,9 +137,9 @@ footer.page-footer{
     margin: 30px 0;
 
 }
-img{
+/* img{
     max-width: 100%;
-}
+} */
 .shihab {
 	width: 193px;
 	font-weight: 600;
@@ -246,7 +305,9 @@ teal-text{
 	background-color: cyan;
 
 }
-dpp{
-	text-align: center;
-	background-color: #579830;
+
+.depart{
+    background-color:gray;
+    background-position: center;
+    font-size: large;
 }
