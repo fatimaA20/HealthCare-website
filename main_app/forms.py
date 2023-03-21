@@ -61,7 +61,7 @@ class CustomUserCreationForm(UserCreationForm):
 
         self.fields['password2'].widget.attrs.update({
             'required':'',
-            'name': 'password',
+            'name': 'password2',
             'type':'password',
             'class':'form-control',
              'placeholder':'Password',
