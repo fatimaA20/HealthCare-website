@@ -69,17 +69,20 @@
                       <li class="nav-item">
                         <a class="nav-link active" href=""> Take an Appoitment </a>
                       </li>
-                    </ul>
-                  </ul>
+                 
                   {% endif %}
-                  <li class="nav-item">
+                  <ul class="nav nav-tabs">
+                   <li class="nav-item">
                     <a href="{% url 'profile' user.id%}" class="nav-link active"> Profile</a>
                   </li>
-                  <ul>
-                    <li class="nav-item">
-                      <a href="{% url 'logout'%}" class="nav-link active"> Log out</a>
-                    </li>
+                </ul>
+              </ul>
+            </div>    
+                    <ul class="nav-item">
+                      <a href="{% url 'logout'%}" class="btn btn-info"> Log out</a>
+                    </ul>
                     <ul>
+
                     {% else %}
                     <li class="nav-item">
                       <a class="nav-link active" href="{% url 'departments_index'%}"> Departments</a>
