@@ -88,6 +88,10 @@ a{
 /* header section */
 
 
+.navbar-custom .navbar-text {
+    color: white;
+}
+
 .sanjid-header .app {
 	font-size: 23px;
 	font-weight: 600;
