@@ -13,8 +13,8 @@ class CustomUserCreationForm(UserCreationForm):
             'type':'text',
             'class':'form-control',
             'placeholder':'User Name',
-            'maxlength': '16',
-            'minlength':'6'
+            'maxlength': '50',
+            'minlength':'3'
 
         })
         self.fields['first_name'].widget.attrs.update({
@@ -23,8 +23,8 @@ class CustomUserCreationForm(UserCreationForm):
             'type':'text',
             'class':'form-control',
             'placeholder':'first Name',
-            'maxlength': '16',
-            'minlength':'6'
+            'maxlength': '50',
+            'minlength':'3'
 
         })
         
@@ -34,8 +34,8 @@ class CustomUserCreationForm(UserCreationForm):
             'type':'text',
             'class':'form-control',
             'placeholder':'last Name',
-            'maxlength': '16',
-            'minlength':'6'
+            'maxlength': '50',
+            'minlength':'3'
 
         })
         
@@ -49,20 +49,30 @@ class CustomUserCreationForm(UserCreationForm):
              'minlength':'6'
         })
 
-        self.fields['password'].widget.attrs.update({
+        self.fields['password1'].widget.attrs.update({
             'required':'',
             'name': 'password',
             'type':'password',
             'class':'form-control',
              'placeholder':'Password',
-             'maxlength': '22',
+             'maxlength': '50',
+             'minlength':'8'
+        })
+
+        self.fields['password2'].widget.attrs.update({
+            'required':'',
+            'name': 'password',
+            'type':'password',
+            'class':'form-control',
+             'placeholder':'Password',
+             'maxlength': '50',
              'minlength':'8'
         })
    
 
     class Meta:
         model = CustomUser
-        fields = ( 'first_name', 'last_name','username','email','password')
+        fields = ( 'first_name', 'last_name','username','email','password1', 'password2')
         
 
 

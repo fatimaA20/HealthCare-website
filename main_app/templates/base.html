@@ -42,12 +42,14 @@
                       <li class="nav-item">
                         <a class="nav-link active" href="{% url 'home'%}">Home</a>
                       </li>
+                      {% if user.is_authenticated %}
+                      {% if user.user_role == 'admin'%}
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Departments</a>
                         <div class="dropdown-menu">
                           <a class="dropdown-item" href="{% url 'departments_index'%}">View All Departments</a>
                           <a class="dropdown-item" href="{%url 'departments_create'%}">Add New Departments</a>
-                          <a class="dropdown-item" href="#">Take Appoitment</a>
+                          {% comment %} <a class="dropdown-item" href="#">Take Appoitment</a> {% endcomment %}
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="https://www.dubaipolice.gov.ae/wps/portal/home">contact us 24/7</a>
                         </div>
@@ -55,19 +57,39 @@
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Doctors</a>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item" href="doctors_index">View All Doctors</a>
-                          <a class="dropdown-item" href="doctors_create">Add New Doctors</a>
+                          <a class="dropdown-item" href="{% url 'doctors_index' %}">View All Doctors</a>
+                          <a class="dropdown-item" href="{% url 'doctors_create' %}">Add New Doctors</a>
                         </div>
                       </li>
-            
+                      {% elif user.user_role == 'Doctor'%}
+                      <li class="nav-item">
+                        <a class="nav-link active" href=""> My Schedule </a>
+                      </li>
+
+                      {% elif user.user_role == 'patient'%}
+                      <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'departments_index'%}"> Departments </a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'doctors_index'%}"> Doctors </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" href=""> Take an Appoitment </a>
+                      </li>
+
+
                     </ul>
                   </ul>
-                  <!-- <button type="button" class="btn btn-outline-info">Info</button> -->
+                  {% endif %}
+                  <li class="nav-item">
+                    <a href="{% url 'profile' user.id%}" class="nav-link active"> Profile</a>
+                  </li>
                   <ul>
-
                   <a href="{% url 'signup'%}" class="btn btn-info">Sign Up</a>
                   <a href="{% url 'login'%}" class="btn btn-info">Login</a>
                   </ul>
+
                 </div>
               </div>
             </nav>
