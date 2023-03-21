@@ -29,8 +29,7 @@ def signup(request):
             return redirect('home')
         else:
             error_message = 'Invalid: Please Try Again!'
-    else:
-        form = CustomUserCreationForm()
+    form = CustomUserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
@@ -95,10 +94,10 @@ def profile (request , user_id):
    user = CustomUser.objects.get(id=user_id)
    return render(request, 'registration/profile.html',{'user' : user})
    
-def profile_detail(request , user_id):
-   user = CustomUser.objects.get(id=user_id)
-   form = CustomUserChangeForm()
-   return render(request, 'registration/profile_detail.html',{'user' : user , 'form' : form})
+# def profile_edit(request , user_id):
+#    user = CustomUser.objects.get(id=user_id)
+#    form = CustomUserChangeForm()
+#    return render(request, 'registration/profile_edit.html',{'user' : user , 'form' : form})
 
 
 # Appointment
