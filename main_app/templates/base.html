@@ -86,26 +86,10 @@
                     <a href="{% url 'profile' user.id%}" class="nav-link active"> Profile</a>
                   </li>
                   <ul>
+                  <a href="{% url 'signup'%}" class="btn btn-info">Sign Up</a>
+                  <a href="{% url 'login'%}" class="btn btn-info">Login</a>
+                  </ul>
 
-                    <li class="nav-item">
-                      <a href="{% url 'logout'%}" class="nav-link active"> Log out</a>
-                    </li>
-                    <ul>
-                    {% else %} 
-                    <li class="nav-item">
-                      <a class="nav-link active" href="{% url 'departments_index'%}"> Departments</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link active" href="{% url 'doctors_index'%}"> Doctors</a>
-                    </li>
-                    <li class="nav-item">
-                    <a href="{% url 'signup'%}" class="nav-link active">Sign Up</a>
-                  </li>
-                </li>
-                <ul class="nav-item">
-                <a href="{% url 'login'%}" class="nav-link active">Login</a>
-                </ul>
-                   {% endif %}
                 </div>
               </div>
             </nav>

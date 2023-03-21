@@ -9,6 +9,7 @@ from django.views.generic import ListView , DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm 
 from .forms import CustomUserChangeForm
+from django.http import HttpResponseRedirect
 
 # for user signup
 from .forms import CustomUserCreationForm
@@ -107,3 +108,14 @@ def AppointmentList():
 
 def BookingAppointment(request, user_id):
    pass
+
+
+def profile_update(request , user_id):
+  #  update profile
+  user = CustomUser.objects.get(id=user_id)
+  form = CustomUserChangeForm(request.POST)
+  if form.is_valid():
+   form.save()
+   return HttpResponseRedirect('/profile/')
+  
+
