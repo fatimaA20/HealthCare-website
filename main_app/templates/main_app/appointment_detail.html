@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
- {% block content %}
-<h1>appointment detail</h1>
-<div>
-  <p>{{ appointment.doctor.name }}</p>
-  <p>{{ appointment.date }}</p>
-  <p>{{ appointment.time }}</p>
-</div>
-{% comment %} <button>
-  <a href="/appointment/{{ appointment.id }}/edit">edit</a>
-</button> {% endcomment %}
+{% block  content %}
 
-{% endblock %}
+<h1> Appointment Details </h1>
+
+<div class="row">
+    <div class="col s6">
+      <div class="card">
+        <div class="card-content">
+            <span class="card-title"> {{appointment.doctor}} </span>
+            {% comment %} <p> {{appointment.Patient}} </p> {% endcomment %}
+        </div>
+
+        <div class="card-action">
+            <a href="{% url 'appointments_update' appointment.id %}">Edit</a>
+            <a href="{% url 'appointments_delete' appointment.id %}">Delete</a>
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock  %}

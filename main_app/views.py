@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from .models import Department ,Doctor , CustomUser ,SHIFTS
+from .models import Department ,Doctor , CustomUser ,SHIFTS , appointment , Patient
 # this should be used to class based
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -10,6 +10,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm 
 from .forms import CustomUserChangeForm
 from django.http import HttpResponseRedirect
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # for user signup
 from .forms import CustomUserCreationForm
@@ -34,6 +36,8 @@ def signup(request):
     form = CustomUserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+
 
 # Departments CBV's
 class DepartmentsList(ListView):
@@ -103,19 +107,45 @@ def profile (request , user_id):
 
 
 # Appointment
-def AppointmentList():
-   pass
+# def AppointmentList():
+#    pass
 
-def BookingAppointment(request, user_id):
-   pass
+# def BookingAppointment(request, user_id):
+#    pass
 
 
-def profile_update(request , user_id):
-  #  update profile
-  user = CustomUser.objects.get(id=user_id)
-  form = CustomUserChangeForm(request.POST)
-  if form.is_valid():
-   form.save()
-   return HttpResponseRedirect('/profile/')
+# def profile_update(request , user_id):
+#   #  update profile
+#   user = CustomUser.objects.get(id=user_id)
+#   form = CustomUserChangeForm(request.POST)
+#   if form.is_valid():
+#    form.save()
+#    return HttpResponseRedirect('/profile/')
   
 
+# Departments CBV's
+## Departments CBV's
+class AppointmentsList(ListView):
+  model = appointment
+
+
+class AppointmentsDetail(DetailView):
+  model = appointment
+
+
+class AppointmentsCreate(CreateView):
+  model = appointment
+  fields = ['department' , 'doctor' , 'day' , 'time']
+  def form_valid(self, form):
+        form.instance.patient_id = self.request.user.id
+        return super().form_valid(form)
+
+
+class AppointmentsUpdate(UpdateView):
+  model = appointment
+  fields = '__all__'
+
+
+class AppointmentsDelete(DeleteView):
+  model = appointment
+  success_url = '/appointments/'   

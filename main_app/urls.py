@@ -11,7 +11,7 @@ urlpatterns = [
 
     # profile URL's
     path('accounts/profile/<int:user_id>',views.profile , name='profile'),
-    path('accounts/<int:pk>/update',views.profile_update,name='profile_update'),
+    # path('accounts/<int:pk>/update',views.profile_update,name='profile_update'),
     # path('accounts/profile_detail/<int:user_id>',views.profile_detail , name='profile_detail'),
 
 
@@ -30,9 +30,14 @@ urlpatterns = [
     path('doctors/<int:pk>/delete/', views.DoctorsDelete.as_view(), name='doctors_delete'),
 
     # appointment URL's
-    path('accounts/<int:user_id>/appointment/<int:appointment_id>',views.AppointmentList,name='appointment_list'),
-    path('accounts/<int:user_id>/bookingappointment/',views.BookingAppointment,name='take_appointment'),
+    # path('accounts/<int:user_id>/appointment/<int:appointment_id>',views.AppointmentList,name='appointment_list'),
+    # path('accounts/<int:user_id>/bookingappointment/',views.BookingAppointment,name='take_appointment'),
 
+    # appointment URL's
+    path('appointments/', views.AppointmentsList.as_view(), name='appointments_index'),
+    path('appointments/<int:pk>',views.AppointmentsDetail.as_view(),name='appointments_detail'),
+    path('appointments/create', views.AppointmentsCreate.as_view(),name='appointments_create'),
+    path('appointments/<int:pk>/update', views.AppointmentsUpdate.as_view(),name='appointments_update'),
+    path('appointments/<int:pk>/delete/', views.AppointmentsDelete.as_view(), name='appointments_delete'),
 
-    
 ]

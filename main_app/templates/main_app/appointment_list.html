@@ -1,13 +1,20 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
-<h1>Appointments</h1>
-{% for appointment  in appointment_list  %}
-<a href="{% url 'appointment_detail' %}">
-<div>
-  <p>Doctor : {{appointment.doctor.name}}</p>
-  <p>Date : {{appointment.date}}</p>
-  <p>Time : {{appointment.time}}</p>
-</div>
+
+<h1> Appointments List </h1>
+
+{% for appointment in appointment_list %}
+<a href="{% url 'appointments_detail' appointment.id %}">
+    <div class="depart">
+        <div class="card-content">
+            <p class="card-text"> Doctor: {{appointment.doctor}} </p>
+            {% comment %} <p class="card-text"> Patient: {{appointment.Patient}} </p> {% endcomment %}
+            <p class="card-text"> Day: {{appointment.day}} </p>
+            <p class="card-text"> Time: {{appointment.time}} </p>
+          
+        </div>
+
+    </div>
 </a>
 {% endfor %}
-{% endblock %}
+{% endblock  %}
