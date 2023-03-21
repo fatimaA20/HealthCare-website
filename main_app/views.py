@@ -21,6 +21,7 @@ def home(request):
 
 def signup(request):
     error_message = ''
+    print("req: ", request.POST)
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -28,7 +29,7 @@ def signup(request):
             login(request, user)
             return redirect('home')
         else:
-            error_message = 'Invalid: Please Try Again!'
+            error_message = 'Invalid: Please Try Again!', form.errors, form.error_messages
     form = CustomUserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)

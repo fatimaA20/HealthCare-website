@@ -33,7 +33,7 @@ class CustomUser (AbstractUser):
         ('patient', 'Patient'),
     )
     user_role = models.CharField(max_length=10, choices=USER_ROLES , default='patient')  
-    mobile_Number = models.CharField(max_length=5000)
+    mobile_Number = models.CharField(max_length=5000, default="0000")
     image = models.ImageField(upload_to='main_app/static/images/users',default='default.jpg') 
 
 

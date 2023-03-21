@@ -1,21 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<<<<<<< HEAD
-<h1> Profile</h1>
-
-{% load static %} 
-<img  width="180px" height="180px" src={% static user.image|cut:'main_app/static/images' %} />
-<p>{{user.username}}</p>
-<p>{{user.first_name}}</p>
-<p>{{user.last_name}}</p>
-<p>{{user.email}}</p>
-
-{% if user.user_role == 'Doctor'%}
-{% comment %} <p>{{user.mobile}}</p> {% endcomment %}
-<button type="submit" ><a href ="{% url 'profile_detail' user.id %}" >Edit profile</a></button>
-
-=======
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -52,5 +37,4 @@
             
         </div>
     </div>
->>>>>>> 970e44c24b897c1c72bd72e1e4e1550e160e78a3
 {% endblock %}
