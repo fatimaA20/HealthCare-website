@@ -14,6 +14,7 @@ urlpatterns = [
     path('accounts/<int:pk>/update',views.profile_update,name='profile_update'),
     path('accounts/profile_detail/<int:user_id>',views.profile_detail , name='profile_detail'),
 
+
     # departments URL's
     path('departments/', views.DepartmentsList.as_view(), name='departments_index'),
     path('departments/<int:pk>',views.DepartmentsDetail.as_view(),name='departments_detail'),
