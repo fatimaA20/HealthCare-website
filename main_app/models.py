@@ -49,7 +49,7 @@ class Patient (CustomUser):
 
 class Department(models.Model):
     name = models.CharField(max_length=50)
-    brief = models.TextField(max_length=50)
+    brief = models.TextField(max_length=5000)
     image = models.ImageField(upload_to='main_app/static/images/department',default='') 
 
     def __str__(self):

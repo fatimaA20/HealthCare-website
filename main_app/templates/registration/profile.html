@@ -4,10 +4,13 @@
 
 {% load static %} 
 <img  width="180px" height="180px" src={% static user.image|cut:'main_app/static/images' %} />
-
-<p>{{user.image}}</p>
 <p>{{user.username}}</p>
+<p>{{user.first_name}}</p>
+<p>{{user.last_name}}</p>
 <p>{{user.email}}</p>
+
+{% if user.user_role == 'Doctor'%}
+{% comment %} <p>{{user.mobile}}</p> {% endcomment %}
 <button type="submit" ><a href ="{% url 'profile_detail' user.id %}" >Edit profile</a></button>
 
 {% endblock %}
