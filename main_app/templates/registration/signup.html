@@ -6,7 +6,9 @@
 <div class="contact-form py-5">
   <div class="container">
     {%if error_message%}
-    <p class="">{{error_message}}</p>
+    <div class="alert alert-danger" role="alert">
+      {{error_message}}
+    </div>
     {% endif %}
 
       <div class="col-xl-6">
