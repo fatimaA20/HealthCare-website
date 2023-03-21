@@ -1,25 +1,64 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
 <h1> Department List </h1>
 
 {% for department in department_list %}
-<a href="{% url 'departments_detail' department.id %}">
-    <div class="depart">
-        <div>
 
-            {% load static %}
-            <img width="100px" height="100px" src={% static department.image|cut:'main_app/static/' %} />
+ <a href="{% url 'departments_detail' department.id %}">
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card h-60" >
+            <img src="https://localemagazine.com/wp-content/uploads/2017/10/Dermatologist.jpg" class="card-img-top h-60 w-40" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{department.name}}</h5>
+                <p class="card-text">Description: {{department.description}}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
           </div>
-        <div class="card-content">
-           
-            <span class="card-title"> {{department.name}} </span>
-
-            <p class="card-text"> Description: {{department.description}} </p>
-          
         </div>
-
-    </div>
 </a>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 {% endfor %}
 {% endblock  %}
