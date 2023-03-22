@@ -4,7 +4,7 @@
 
 <!-- <h1 class="center"> Department List </h1> -->
 
-{% for department in department_list %}
+
 
   <!-- Test -->
 
@@ -157,40 +157,21 @@ div.card {
   }
   
 }
-/* 
-div.cards.showing {
-  div.card; {
-    cursor: pointer;
-    opacity: 0.6;
-    transform: scale(0.88);
-  }
-} */
 
-/* .no-touch  div.cards.showing {
-  div.card; ::hover {
-    opacity: 0.94;
-    transform: scale(0.92);
-  }
-} */
 
 div.card.show {
   opacity: 1 !important;
   transform: scale(1) !important;
+}
 
-  /* div.card-title {
-    a.toggle-info {
-      background: @salmon !important;
-      span {
-        top: 15px;
-      } */
-      span.left {
+      /* span.left {
         right: 10px;
       }
       span.right {
         left: 10px;
       }
-    }
-  }
+    } */
+  
   div.card-flap {
     background: @white;
     transform: rotateX(0deg);
@@ -262,13 +243,14 @@ div.card.show {
                         <div class="display-3">Our Departments</div>
 
   <div class="cards">
+    {% for department in department_list %}
+{% if  user.user_role == 'doctor' or 'patient'%}
     <div class="card">
         <a href="{% url 'departments_detail' department.id %}">
       <div class="card__image-holder">
         <img class="card__image" src="https://i.ibb.co/L5YsGzW/My-project.jpg" alt="wave" />
       </div>
       <div class="card-title">
-      
           <span class="left"></span>
           <span class="right"></span>
         </a>
@@ -287,7 +269,9 @@ div.card.show {
         </div>
       </div>
     </div>
-</a>
+    {% endif %}
+    {% endfor %}
+<!-- </a>
 <div class="card">
     <a href="{% url 'departments_detail' department.id %}">
   <div class="card__image-holder">
@@ -486,6 +470,7 @@ div.card.show {
         <div class="card-flap flap2">
           <div class="card-actions">
             <a href="{% url 'doctors_index'%}" class="btn" style="position:ceneter;">View Doctors</a>
+          -->
           </div>
         </div>
       </div>
@@ -494,7 +479,5 @@ div.card.show {
   
   
   
-  
-  
-{% endfor %}
+
 {% endblock  %}
