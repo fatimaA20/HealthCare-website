@@ -9,7 +9,7 @@
         <div class="card-content">
             <div>
                 {% load static %}
-                <img width='100px' height='100px' src={% static department.image|cut:'main_app/static' %} />
+                <img width='100px' height='100px' src='{% static department.image|cut:'main_app/static' %}' />
               </div>
             <span class="card-title"> {{department.name}} </span>
         </div>
@@ -22,7 +22,7 @@
         <div class="card-content">
             <div>
                 {% load static %}
-                <img width='100px' height='100px' src={% static department.image|cut:'main_app/static' %} />
+                <img width='100px' height='100px' src='{% static department.image|cut:'main_app/static' %}' />
               </div>
             <span class="card-title"> {{department.name}} </span>
             <p class="card-text"> {{department.brief}} </p>
