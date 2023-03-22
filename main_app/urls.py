@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views # dot(.) here mean root
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     # Routes in Express , URLs in Django
@@ -11,7 +13,11 @@ urlpatterns = [
 
     # profile URL's
     path('accounts/profile/<int:user_id>',views.profile , name='profile'),
-    path('accounts/<int:pk>/update',views.profile_update,name='profile_update'),
+
+    path('accounts/<int:pk>/edit',views.editProfile,name='edit_Profile'),
+
+    # path('accounts/<int:pk>/update',views.profile_update,name='profile_update'),
+
     # path('accounts/profile_detail/<int:user_id>',views.profile_detail , name='profile_detail'),
 
 
@@ -32,7 +38,9 @@ urlpatterns = [
     # appointment URL's
     path('accounts/<int:user_id>/appointment/<int:appointment_id>',views.AppointmentList,name='appointment_list'),
     path('accounts/<int:user_id>/bookingappointment/',views.BookingAppointment,name='take_appointment'),
-
-
-    
+    path('department/<int:department_id>/doctors',views.DepartmentDoctor,name='department_doctor'),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

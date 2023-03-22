@@ -6,6 +6,31 @@
 
 {% for department in department_list %}
 
+{% if  user.user_role == 'doctor' or 'patient'%}
+<a href="{% url 'department_doctor' department.id %}">
+    <div class="card">
+        <div class="card-content">
+            <div>
+                {% load static %}
+                <img width='100px' height='100px' src={% static department.image|cut:'main_app/static' %} />
+              </div>
+            <span class="card-title"> {{department.name}} </span>
+        </div>
+    </div>
+</a>
+
+{% else %}
+<a href="{% url 'departments_detail' department.id %}">
+    <div class="card">
+        <div class="card-content">
+            <div>
+                {% load static %}
+                <img width='100px' height='100px' src={% static department.image|cut:'main_app/static' %} />
+              </div>
+            <span class="card-title"> {{department.name}} </span>
+            <p class="card-text"> {{department.brief}} </p>
+
+
   <!-- Test -->
 
   <style>
@@ -284,10 +309,14 @@ div.card.show {
           <div class="card-actions">
             <a href="{% url 'doctors_index'%}" class="btn" style="position:ceneter;">View Doctors</a>
           </div>
+
         </div>
       </div>
     </div>
 </a>
+
+{% endif %}
+
 <div class="card">
     <a href="{% url 'departments_detail' department.id %}">
   <div class="card__image-holder">
@@ -491,10 +520,5 @@ div.card.show {
       </div>
     </div>
   </div>
-  
-  
-  
-  
-  
 {% endfor %}
 {% endblock  %}
