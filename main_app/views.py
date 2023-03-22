@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect 
 from .models import Department ,Doctor , CustomUser ,SHIFTS , appointment , Patient
 # this should be used to class based
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,6 +12,7 @@ from .forms import CustomUserChangeForm
 from django.http import HttpResponseRedirect
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 
 # for user signup
 from .forms import CustomUserCreationForm
@@ -150,8 +151,19 @@ class AppointmentsDetail(DetailView):
 
 class AppointmentsCreate(CreateView):
   model = appointment
-  fields = ['department' , 'doctor' , 'day' , 'time']
-  # fields = '__all__'
+  fields = ['doctor', 'day', 'time']
+  template_name = 'appointment_form.html'
+
+  def get_success_url(self):
+    return reverse('appointments_detail', kwargs={'pk': self.object.pk})
+
+  def get_form_kwargs(self):
+    kwargs = super().get_form_kwargs()
+    department_id = self.kwargs.get('department_id')
+    department = Department.objects.get(id=department_id)
+    kwargs['department'] = department
+    return kwargs
+
   def form_valid(self, form):
     form.instance.patient_id = self.request.user.id
     return super().form_valid(form)
