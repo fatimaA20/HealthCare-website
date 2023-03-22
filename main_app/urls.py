@@ -13,6 +13,7 @@ urlpatterns = [
 
     # profile URL's
     path('accounts/profile/<int:user_id>',views.profile , name='profile'),
+    # path('accounts/edit/<int:user_id>', views.edit_patient_profile, name='edit_patient_profile'),
 
     # path('accounts/<int:pk>/edit',views.editProfile,name='edit_Profile'),
 
@@ -38,6 +39,10 @@ urlpatterns = [
     path('appointments/create', views.AppointmentsCreate.as_view(),name='appointments_create'),
     path('appointments/<int:pk>/update', views.AppointmentsUpdate.as_view(),name='appointments_update'),
     path('appointments/<int:pk>/delete/', views.AppointmentsDelete.as_view(), name='appointments_delete'),
+
+    # path('doctor_profile/edit/', views.edit_doctor_profile, name='edit_doctor_profile'),
+
+
 
 
     # display all doctors in a specific department 

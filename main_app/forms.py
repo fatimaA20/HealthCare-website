@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Doctor
+from .models import CustomUser, Doctor,Patient
 
 
 
@@ -95,3 +95,19 @@ class CustomUserChangeForm(UserChangeForm):
         fields = ['username', 'email', 'mobile_Number', 'image']
 
 
+
+
+class AdminProfileForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = '__all__'
+
+class PatientProfileForm(forms.ModelForm):
+    class Meta:
+        model = Patient
+        fields = '__all__'
+
+class DoctorProfileForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields ='__all__'

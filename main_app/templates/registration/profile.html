@@ -13,7 +13,8 @@
                          
                             <!-- <img src={% static users.image|cut:'main_app/static/' %} alt="Profile Image" class="img-thumbnail rounded-circle"/> -->
                             
-                                <img class="uk-border-circle" width="40" height="40" src="https://gravatar.com/avatar/d6ac8016f770334adaa3a07caf19c928?s=80&d=https://codepen.io/assets/avatars/user-avatar-80x80-bdcd44a3bfb9a5fd01eb8b86f9e033fa1a9897c3a15b33adfc2649a002dab1b6.png"><br>
+                               
+                            <img class="uk-border-circle" width="100px" height="100px" src={% static cat.image|cut:'main_app/static/' %} /><br>
                                
                         </div>
                         <div class="mt-3">
@@ -34,9 +35,8 @@
                             {% endif %}
                         </div>
                         <div style="display: flex;justify-content: center;align-items: center;">
-                            #todo
-                            #todo
-                             {% comment %} <a href="{%url 'profile_edit' user.id%}"> <button class="btn  btn-lg btn-info">Edit profile</button></a>  {% endcomment %}
+
+                             <a href="{%url 'edit_patient_profile' user.id%}"> <button class="btn  btn-lg btn-info">Edit profile</button></a> 
                         </div>
                       
                     </div>
