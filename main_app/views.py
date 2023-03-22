@@ -9,12 +9,23 @@ from django.views.generic import ListView , DetailView
 # these 2 lines was imported to create form of signup
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm 
-from .forms import CustomUserChangeForm
+from .forms import CustomUserChangeForm,DoctorProfileForm,DoctorEditProfileForm,PatientEditProfileForm
 from django.http import HttpResponseRedirect
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
+from django.contrib import messages
+# from django.contrib.auth.models import User
+
+
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserChangeForm
+
 # for user signup
 from .forms import CustomUserCreationForm,AdminProfileForm,PatientProfileForm
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 # Create your views here.
 
@@ -55,7 +66,7 @@ def update_user(pk, form_data):
 
 # Departments CBV's
 class DepartmentsList(ListView):
-  model = Department
+    model = Department
 
 
 class DepartmentsDetail(DetailView):
@@ -122,40 +133,54 @@ def profile (request , user_id):
 
 
 
-# def profile_update(request , user_id):
-#   #  update profile
-#   user = CustomUser.objects.get(id=user_id)
-#   form = CustomUserChangeForm(request.POST)
-#   if form.is_valid():
-#    form.save()
-#    return HttpResponseRedirect('/profile/')
-  
-# @login_required
-# def edit_admin_profile(request):
-#     if request.method == 'POST':
-#         form = AdminProfileForm(request.POST, instance=request.user)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Your profile has been updated!')
-#             return redirect('home')
-#     else:
-#         form = AdminProfileForm(instance=request.user)
-#     return render(request, 'edit_admin_profile.html', {'form': form})
 
 
-# @login_required
-# def edit_patient_profile(request, pk):
-#     patient = get_object_or_404(Patient, pk=pk, user=request.user)
 
-#     if request.method == 'POST':
-#         form = PatientProfileForm(request.POST, instance=patient)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('patient_profile')
-#     else:
-#         form = PatientProfileForm(instance=patient)
+def edit_admin_profile(request, user_id):
+    User = get_user_model()
+    user = User.objects.get(id=user_id)
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST,request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully')
+            return redirect(reverse('profile', kwargs={'user_id': user.id}))
 
-#     return render(request, 'edit_patient_profile.html', {'form': form})
+    else:
+        form = CustomUserChangeForm(instance=user)
+        context = {'form': form, 'user': user}
+        return render(request, 'registration/edit_admin_profile.html', context)
+
+
+# edit_doctor_profile
+def edit_doctor_profile(request, user_id):
+   User = get_user_model()
+   user = User.objects.get(id=user_id)
+   if request.method == 'POST':
+      form = DoctorEditProfileForm(request.POST,request.FILES, instance=user)
+      if form.is_valid():
+         form.save()
+         messages.success(request, 'Profile updated successfully')
+         return redirect(reverse('profile', kwargs={'user_id': user.id}))
+   else:
+        form = DoctorEditProfileForm(instance=user)
+   context = {'form': form, 'user': user}
+   return render(request, 'registration/edit_doctor_profile.html', context)
+
+
+def edit_patient_profile(request,user_id):
+   User = get_user_model()
+   user = User.objects.get(id=user_id)
+   if request.method == 'POST':
+      form = PatientEditProfileForm(request.POST,request.FILES, instance=user)
+      if form.is_valid():
+         form.save()
+         messages.success(request, 'Profile updated successfully')
+         return redirect(reverse('profile', kwargs={'user_id': user.id}))
+   else:
+        form = PatientEditProfileForm(instance=user)
+   context = {'form': form, 'user': user}
+   return render(request, 'registration/edit_doctor_profile.html', context)
 
 
 
