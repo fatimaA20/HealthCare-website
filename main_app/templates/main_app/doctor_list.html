@@ -4,7 +4,7 @@
 {% load static %}
 
 
-{% for doctor in doctor_list %}
+{% comment %} {% for doctor in doctor_list %}
 <a href="{% url 'doctors_detail' doctor.id %}">
     <div class="card">
         <div class="card-content">
@@ -12,7 +12,7 @@
             <p class ="card-text">Department: {{doctor.department}}</p>
 
         </div>
-    </div>
+    </div> {% endcomment %}
 
 <body class="bg-light">
     <main>
