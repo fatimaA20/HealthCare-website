@@ -35,8 +35,13 @@
                             {% endif %}
                         </div>
                         <div style="display: flex;justify-content: center;align-items: center;">
-
-                             <a href="{%url 'edit_patient_profile' user.id%}"> <button class="btn  btn-lg btn-info">Edit profile</button></a> 
+                            {% if  user.user_role == 'admin' %}
+                                <a href="{% url 'edit_admin_profile' user.id%}"> <button class="btn  btn-lg btn-info">Edit profile</button></a> 
+                            {% elif  user.user_role == 'patient'%}
+                                <a href="{% url 'edit_patient_profile' user.id%}"> <button class="btn  btn-lg btn-info">Edit profile</button></a> 
+                            {% else %}
+                                <a href="{% url 'edit_doctor_profile' user.id%}"> <button class="btn  btn-lg btn-info">Edit profile</button></a> 
+                            {% endif %}  
                         </div>
                       
                     </div>

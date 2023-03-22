@@ -13,7 +13,11 @@ urlpatterns = [
 
     # profile URL's
     path('accounts/profile/<int:user_id>',views.profile , name='profile'),
-    # path('accounts/edit/<int:user_id>', views.edit_patient_profile, name='edit_patient_profile'),
+    path('accounts/edit/<int:user_id>', views.edit_patient_profile, name='edit_patient_profile'),
+    path('edit_admin_profile/<int:user_id>', views.edit_admin_profile, name='edit_admin_profile'),
+    path('edit_doctor_profile/<int:user_id>', views.edit_doctor_profile, name='edit_doctor_profile'),
+
+
 
     # path('accounts/<int:pk>/edit',views.editProfile,name='edit_Profile'),
 
