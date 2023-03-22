@@ -24,11 +24,13 @@ def home(request):
 
 def signup(request):
     error_message = ''
-    print("req: ", request.POST)
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.save()
+            patient = Patient.objects.create(user=user)  # create Patient object with user attribute
+            update_user(pk=user.id, form_data=request.POST)
             login(request, user)
             return redirect('home')
         else:
@@ -36,6 +38,15 @@ def signup(request):
     form = CustomUserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+def update_user(pk, form_data):
+    user = CustomUser.objects.get(pk=pk)
+    form = CustomUserChangeForm(form_data, instance=user)
+    if form.is_valid():
+        form.save()
+
+       
+   
 
 
 

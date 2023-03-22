@@ -39,13 +39,16 @@ class CustomUser (AbstractUser):
     image = models.ImageField(upload_to='main_app/static/images/users',default='default.jpg') 
 
 
-class Patient (CustomUser):
-    blood = models.CharField(max_length=100)
-    cpr = models.CharField(max_length=100)
-    height = models.FloatField(max_length=5)
-    weight = models.FloatField(max_length=5)
-    dof = models.DateField(max_length=100)
-    sensitivity = models.TextField(max_length=5000)
+class Patient(CustomUser):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='patient_profile', null=True ) 
+    blood = models.CharField(max_length=100 , null=True)
+    cpr = models.CharField(max_length=100 , null=True)
+    height = models.FloatField(max_length=5, null=True)
+    weight = models.FloatField(max_length=5, null=True)
+    dof = models.DateField(max_length=100, null=True)
+    sensitivity = models.TextField(max_length=5000, null=True)
+
+
 
 
 class Department(models.Model):
