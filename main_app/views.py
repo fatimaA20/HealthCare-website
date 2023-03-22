@@ -160,3 +160,8 @@ class AppointmentsUpdate(UpdateView):
 class AppointmentsDelete(DeleteView):
   model = appointment
   success_url = '/appointments/'   
+
+def DepartmentDoctor(request, department_id):
+   doctors = Doctor.objects.filter(department_id=department_id)
+   department = Department.objects.get(id=department_id)
+   return render(request, 'main_app/department_doctor.html', {'doctors': doctors, 'department': department})

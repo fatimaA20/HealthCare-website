@@ -7,16 +7,19 @@
     <div class="col s6">
       <div class="doc">
         <div class="card-content">
-            <span class="card-title"> {{doctor.shift}} </span>
-            <p> {{doctor.username}} </p>
+            <span class="card-title"> </span>
+
+            <p>Name: {{ doctor.first_name }} {{ doctor.last_name }}</p>
+            <p>Department: {{doctor.department}}</p>
+            <p>Description: {{doctor.description}}</p>
      
         </div>
-
+{% if user.user_role  == 'admin' %}
         <div class="card-action">
             <a href="{% url 'doctors_update' doctor.id %}">Edit</a>
             <a href="{% url 'doctors_delete' doctor.id %}">Delete</a>
           </div>
-
+{% endif %}
       </div>
     </div>
   </div>
