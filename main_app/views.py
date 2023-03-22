@@ -8,10 +8,12 @@ from django.views.generic import ListView , DetailView
 # these 2 lines was imported to create form of signup
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm 
-from .forms import CustomUserChangeForm
+from django.contrib.auth.views import PasswordChangeView
+from .forms import CustomUserChangeForm, PasswordChangingForm
 from django.http import HttpResponseRedirect
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse_lazy
 
 # for user signup
 from .forms import CustomUserCreationForm
@@ -114,6 +116,15 @@ class DoctorsDelete(DeleteView):
 def profile (request , user_id):
    user = CustomUser.objects.get(id=user_id)
    return render(request, 'registration/profile.html',{'user' : user})
+
+
+class PasswordChangeView(PasswordChangeView):
+   form_class = PasswordChangingForm
+   success_url = reverse_lazy()
+def password_sucess(request):
+   return render(request, 'registration/password_change.html')
+   
+   
    
 # def profile_edit(request , user_id):
 #    user = CustomUser.objects.get(id=user_id)

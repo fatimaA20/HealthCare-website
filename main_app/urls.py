@@ -13,6 +13,7 @@ urlpatterns = [
 
     # profile URL's
     path('accounts/profile/<int:user_id>',views.profile , name='profile'),
+    path('accounts/<int:pk>/edit', views.PasswordChangeView.as_view(), name="change_password"),
 
     # path('accounts/<int:pk>/edit',views.editProfile,name='edit_Profile'),
 

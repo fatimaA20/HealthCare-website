@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from .models import CustomUser, Doctor
 
 
@@ -95,3 +95,7 @@ class CustomUserChangeForm(UserChangeForm):
         fields = ['username', 'email', 'mobile_Number', 'image']
 
 
+class PasswordChangingForm(PasswordChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ['old_password', 'new_password1', 'new_password2']
