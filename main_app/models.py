@@ -90,3 +90,6 @@ class appointment (models.Model):
 
     def __str__(self):
         return f"{self.patient} | day: {self.day} | time: {self.time}"
+    
+    def get_absolute_url(self):
+        return reverse('appointments_detail', kwargs ={'pk' : self.id})
