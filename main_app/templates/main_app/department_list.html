@@ -3,13 +3,33 @@
 <h1> Department List </h1>
 
 {% for department in department_list %}
-<a href="{% url 'departments_detail' department.id %}">
+{% if  user.user_role == 'doctor' or 'patient'%}
+<a href="{% url 'department_doctor' department.id %}">
     <div class="card">
         <div class="card-content">
+            <div>
+                {% load static %}
+                <img width='100px' height='100px' src={% static department.image|cut:'main_app/static' %} />
+              </div>
             <span class="card-title"> {{department.name}} </span>
-            <p class="card-text"> {{department.description}} </p>
         </div>
     </div>
 </a>
+
+{% else %}
+<a href="{% url 'departments_detail' department.id %}">
+    <div class="card">
+        <div class="card-content">
+            <div>
+                {% load static %}
+                <img width='100px' height='100px' src={% static department.image|cut:'main_app/static' %} />
+              </div>
+            <span class="card-title"> {{department.name}} </span>
+            <p class="card-text"> {{department.brief}} </p>
+        </div>
+    </div>
+</a>
+{% endif %}
+
 {% endfor %}
 {% endblock  %}

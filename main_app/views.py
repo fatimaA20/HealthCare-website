@@ -9,7 +9,7 @@ from django.views.generic import ListView , DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm 
 from .forms import CustomUserChangeForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 
 # for user signup
 from .forms import CustomUserCreationForm
@@ -108,13 +108,24 @@ def AppointmentList():
 def BookingAppointment(request, user_id):
    pass
 
+# edit profile
+def editProfile(request):
+   user = request.user
+   if request.method == 'POST':
+      form = CustomUserChangeForm(request.POST, instance=user)
+      if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/profile/')
+      else:
+         return render(request, 'registration/edit_profile.html', {'form': form})
+      
 
-def profile_update(request , user_id):
-  #  update profile
-  user = CustomUser.objects.get(id=user_id)
-  form = CustomUserChangeForm(request.POST)
-  if form.is_valid():
-   form.save()
-   return HttpResponseRedirect('/profile/')
-  
+# def DepartmentDoctor(request):
+#     doctors = Doctor.objects.filter(department=request.department_id)
+#     return render(request, 'main_app/department_doctor.html', { 'doctors': doctors })
 
+
+def DepartmentDoctor(request, department_id):
+   doctors = Doctor.objects.filter(department_id=department_id)
+   department = Department.objects.get(id=department_id)
+   return render(request, 'main_app/department_doctor.html', {'doctors': doctors, 'department': department})

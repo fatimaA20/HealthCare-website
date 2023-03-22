@@ -7,9 +7,11 @@
 <a href="{% url 'doctors_detail' doctor.id %}">
     <div class="card">
         <div class="card-content">
-            <p class="card-text"> {{doctor.username}} </p>
+            <p class ="card-text">Doctor Name: {{ doctor.first_name }} {{ doctor.last_name }}</p></a>
+            <p class ="card-text">Department: {{doctor.department}}</p>
+
         </div>
     </div>
-</a>
+
 {% endfor %}
 {% endblock  %}
