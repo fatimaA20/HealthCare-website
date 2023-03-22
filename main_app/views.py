@@ -29,7 +29,9 @@ def signup(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
-            patient = Patient.objects.create(user=user)  # create Patient object with user attribute
+            patient = Patient(user_id=user.id)  # create Patient object with user attribute
+            patient.save()
+            print("Call Function")
             update_user(pk=user.id, form_data=request.POST)
             login(request, user)
             return redirect('home')
@@ -40,6 +42,8 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 def update_user(pk, form_data):
+    print("pk", pk)
+    print("form_data", form_data)
     user = CustomUser.objects.get(pk=pk)
     form = CustomUserChangeForm(form_data, instance=user)
     if form.is_valid():
@@ -147,9 +151,12 @@ class AppointmentsDetail(DetailView):
 class AppointmentsCreate(CreateView):
   model = appointment
   fields = ['department' , 'doctor' , 'day' , 'time']
+  # fields = '__all__'
   def form_valid(self, form):
-        form.instance.patient_id = self.request.user.id
-        return super().form_valid(form)
+    form.instance.patient_id = self.request.user.id
+    return super().form_valid(form)
+
+  
 
 
 class AppointmentsUpdate(UpdateView):
