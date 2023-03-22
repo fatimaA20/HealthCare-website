@@ -4,6 +4,15 @@
 {% load static %}
 
 
+{% comment %} {% for doctor in doctor_list %}
+<a href="{% url 'doctors_detail' doctor.id %}">
+    <div class="card">
+        <div class="card-content">
+            <p class ="card-text">Doctor Name: {{ doctor.first_name }} {{ doctor.last_name }}</p></a>
+            <p class ="card-text">Department: {{doctor.department}}</p>
+
+        </div>
+    </div> {% endcomment %}
 
 <body class="bg-light">
     <main>
@@ -116,5 +125,6 @@
         <!-- /Ui cards -->
     </main>
 </body>
+
 {% endfor %}
 {% endblock  %}

@@ -69,12 +69,24 @@ class CustomUserCreationForm(UserCreationForm):
              'minlength':'8'
         })
    
+   
 
     class Meta:
         model = CustomUser
         fields = [ 'first_name', 'last_name','username','email','password1', 'password2']
         
+        def clean_username(self):
+            username = self.cleaned_data.get('username')
 
+        # Check if the username is already taken
+            if CustomUser.objects.filter(username=username).exists():
+                raise forms.ValidationError('This username is already taken.')
+
+        # Check if the username is empty
+            if not username:
+                raise forms.ValidationError('Please enter a username.')
+
+            return username
 
 class CustomUserChangeForm(UserChangeForm):
 

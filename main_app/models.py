@@ -3,6 +3,8 @@ from django.contrib.auth.models import  AbstractUser , BaseUserManager, Permissi
 from django.urls import reverse
 from django.contrib.auth.hashers import make_password
 from datetime import datetime
+
+
 # Create your models here.
 
 
@@ -37,15 +39,17 @@ class CustomUser (AbstractUser):
     image = models.ImageField(upload_to='main_app/static/images/users',default='default.jpg') 
 
 
+class Patient(CustomUser):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='patient_profile', null=True ) 
+    blood = models.CharField(max_length=100 , null=True)
+    cpr = models.CharField(max_length=100 , null=True)
+    height = models.FloatField(max_length=5, null=True)
+    weight = models.FloatField(max_length=5, null=True)
+    dof = models.DateField(max_length=100, null=True)
+    sensitivity = models.TextField(max_length=5000, null=True)
 
-class Patient (CustomUser):
-    blood = models.CharField(max_length=100)
-    cpr = models.CharField(max_length=100)
-    height = models.FloatField(max_length=5)
-    weight = models.FloatField(max_length=5)
-    dof = models.DateField(max_length=100)
-    sensitivity = models.TextField(max_length=5000)
-   
+
+
 
 class Department(models.Model):
     name = models.CharField(max_length=50)
@@ -78,6 +82,7 @@ class Doctor (CustomUser):
 
 class appointment (models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, null = True , blank= True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     day = models.DateField(default=datetime.now)
     time = models.CharField(max_length=10, choices=TIME_CHOICES, default="3 PM")
