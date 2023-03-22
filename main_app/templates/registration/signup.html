@@ -3,32 +3,29 @@
 {% load widget_tweaks %}
 {% load static %}
 
-<div class="contact-form py-5">
-  <div class="container">
-    {%if error_message%}
-    <div class="alert alert-danger" role="alert">
-      {{error_message}}
-    </div>
-    {% endif %}
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+          class="img-fluid" alt="Phone image">
+      </div>
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card">
+            <div class="card-body py-5 px-md-5">
 
-      <div class="col-xl-6">
-        <div class="form-section mt-5">
-          <div class="card text-center border-0">
-            <div class="card-body">
-              <h3 class="card-title my-3">Please provide us with all your details</h3>
 
-<div class="container" >
-  <div class="card center spacer ">
-    <h1 class="title text-center"> Register </h1>
-    <br><br>
+    
+             <br><br> 
 
     <form method="POST"  action="{% url 'signup' %}" class="login-form spacer" id="signup-form">
            {% csrf_token %}
         <div class="row">
-        <div class="col">
+        <div class="col" style="padding: 0; left: 30px;">
 
-          {{ form.first_name.label_tag }}
-          {{ form.first_name }}
+          <div class="test1" style="width: 195px;">{{ form.first_name.label_tag }}</div>
+          <div class="test1" style="width: 195px;">{{ form.first_name }}</div>
+          
           {% if form.first_name.errors %}
             {% for error in form.first_name.errors %}
               <div class="invalid-feedback">{{ error }}</div>
@@ -37,9 +34,9 @@
 
         </div>
 
-        <div class="col">
-          {{ form.last_name.label_tag }}
-          {{ form.last_name }}
+        <div class="col" style="padding: 0; left: 10px; ">
+          <div class="test1" style="width: 195px;">{{ form.last_name.label_tag }}</div>
+          <div class="test1" style="width: 195px;">{{ form.last_name }}</div>
           {% if form.last_name.errors %}
             {% for error in form.last_name.errors %}
               <div class="invalid-feedback">{{ error }}</div>
@@ -47,7 +44,7 @@
           {% endif %}
         </div>
       </div>
-      <br><br>
+   
         <div class="col-12">
           {{ form.username.label_tag }}
           {{ form.username }}
@@ -88,8 +85,8 @@
             {% endfor %}
           {% endif %}
         </div>
-        <br><br>
-        <input class="btn  btn-lg btn-info" type="submit" >
+        <br><br>      <input class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!"
+        role="button" type="submit">
       </div>
     
     </form>
@@ -101,5 +98,13 @@
           </div>
           </div>
           </div>
-          </div>
+          </div> 
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+          
 {% endblock %}

@@ -1,29 +1,65 @@
-/* body {
-    background-color: rgb(219, 226, 227);
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-main {
-    flex: 1 0 auto;
-}
-footer.page-footer{
-    padding-top: 0;
-    text-align: right;
+
+.page-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+ }
+ 
+:root{
+    --frost-blue-color: #0050d5;
+    --light-blue-color: #16c5ff;
+    --dark-color: #202020;
+    --light-color: #fff;
+    --poppins-font: 'Poppins', sabs-serif;
+    --transition: all 0.3s ease-in-out;
+    --box-shadow: 0 0 15px 2px rgba(0,0,0,0.2)!important;
 }
 
-.flex-container {
-    display: flex;
-    justify-content: space-between;
-  }
-
-.section_bar {
-    margin-right: 20px;
-    display: flex;
-    justify-content: space-between;
-
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
- */
+
+html{
+    font-size: 10px;
+}
+
+body{
+    font-size: 1.6rem;
+    line-height: 1.6;
+    font-family: var(--poppins-font);
+}
+
+img{
+    width: 100%;
+    display: block;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: var(--dark-color);
+}
+
+.bg-blue{
+    background-color: var(--frost-blue-color);
+}
+
+.bg-white{
+    background-color: var(--light-color);
+}
+.text-blue{
+    color: var(--frost-blue-color);
+}
+
+
+
+
 
 
 /* header section */
@@ -82,9 +118,7 @@ footer.page-footer{
     margin: 30px 0;
 
 }
-img{
-    max-width: 100%;
-}
+
 .shihab {
 	width: 193px;
 	font-weight: 600;
@@ -125,9 +159,7 @@ img{
 
     width: 60%;
 }
-.protofolio{
 
-}
 
 .protofolio-item a{
     position: relative;
@@ -234,10 +266,7 @@ img{
 	box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.8);
 	padding: 31px;
 }
-/* footer section */
-.footer{
-    background: #f7f9ff;
-}
+
 .footer p {
 	font-size: 22px;
     color: #767676;
@@ -250,7 +279,9 @@ teal-text{
 	background-color: cyan;
 
 }
-dpp{
-	text-align: center;
-	background-color: #579830;
+
+.depart{
+    background-color:gray;
+    background-position: center;
+    font-size: large;
 }

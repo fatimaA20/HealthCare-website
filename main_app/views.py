@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from .models import Department ,Doctor , CustomUser ,SHIFTS
+from .models import Department ,Doctor , CustomUser ,SHIFTS , appointment , Patient
 # this should be used to class based
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -9,7 +9,9 @@ from django.views.generic import ListView , DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm 
 from .forms import CustomUserChangeForm
-from django.http import HttpResponseRedirect,HttpResponse
+from django.http import HttpResponseRedirect
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # for user signup
 from .forms import CustomUserCreationForm
@@ -25,14 +27,28 @@ def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.save()
+            patient = Patient.objects.create(user=user)  # create Patient object with user attribute
+            update_user(pk=user.id, form_data=request.POST)
             login(request, user)
             return redirect('home')
         else:
-            error_message = 'Invalid: Please Try Again!'
+            error_message = 'Invalid: Please Try Again!', form.errors, form.error_messages
     form = CustomUserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+def update_user(pk, form_data):
+    user = CustomUser.objects.get(pk=pk)
+    form = CustomUserChangeForm(form_data, instance=user)
+    if form.is_valid():
+        form.save()
+
+       
+   
+
+
 
 # Departments CBV's
 class DepartmentsList(ListView):
@@ -102,28 +118,48 @@ def profile (request , user_id):
 
 
 # Appointment
-def AppointmentList():
-   pass
+# def AppointmentList():
+#    pass
 
-def BookingAppointment(request, user_id):
-   pass
+# def BookingAppointment(request, user_id):
+#    pass
 
-# edit profile
-def editProfile(request):
-   user = request.user
-   if request.method == 'POST':
-      form = CustomUserChangeForm(request.POST, instance=user)
-      if form.is_valid():
-        form.save()
-        return HttpResponseRedirect('/profile/')
-      else:
-         return render(request, 'registration/edit_profile.html', {'form': form})
-      
 
-# def DepartmentDoctor(request):
-#     doctors = Doctor.objects.filter(department=request.department_id)
-#     return render(request, 'main_app/department_doctor.html', { 'doctors': doctors })
+# def profile_update(request , user_id):
+#   #  update profile
+#   user = CustomUser.objects.get(id=user_id)
+#   form = CustomUserChangeForm(request.POST)
+#   if form.is_valid():
+#    form.save()
+#    return HttpResponseRedirect('/profile/')
+  
 
+# Departments CBV's
+## Departments CBV's
+class AppointmentsList(ListView):
+  model = appointment
+
+
+class AppointmentsDetail(DetailView):
+  model = appointment
+
+
+class AppointmentsCreate(CreateView):
+  model = appointment
+  fields = ['department' , 'doctor' , 'day' , 'time']
+  def form_valid(self, form):
+        form.instance.patient_id = self.request.user.id
+        return super().form_valid(form)
+
+
+class AppointmentsUpdate(UpdateView):
+  model = appointment
+  fields = '__all__'
+
+
+class AppointmentsDelete(DeleteView):
+  model = appointment
+  success_url = '/appointments/'   
 
 def DepartmentDoctor(request, department_id):
    doctors = Doctor.objects.filter(department_id=department_id)
