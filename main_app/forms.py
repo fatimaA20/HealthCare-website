@@ -88,12 +88,27 @@ class CustomUserCreationForm(UserCreationForm):
 
             return username
 
-class CustomUserChangeForm(UserChangeForm):
+class CustomUserChangeForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['image','username','first_name','last_name', 'email', 'mobile_Number']
 
+
+class AdminProfileForm(forms.ModelForm):
+    
     class Meta:
         model = CustomUser
         fields = ['username', 'email', 'mobile_Number', 'image']
 
+class PatientProfileForm(forms.ModelForm):
+    class Meta:
+        model = Patient
+        fields = '__all__'
+
+class DoctorProfileForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields ='__all__'
 
 class PasswordChangingForm(PasswordChangeForm):
     class Meta:

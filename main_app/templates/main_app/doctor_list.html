@@ -3,17 +3,6 @@
 {% load widget_tweaks %}
 {% load static %}
 
-
-{% comment %} {% for doctor in doctor_list %}
-<a href="{% url 'doctors_detail' doctor.id %}">
-    <div class="card">
-        <div class="card-content">
-            <p class ="card-text">Doctor Name: {{ doctor.first_name }} {{ doctor.last_name }}</p></a>
-            <p class ="card-text">Department: {{doctor.department}}</p>
-
-        </div>
-    </div> {% endcomment %}
-
 <body class="bg-light">
     <main>
         <!-- Ui cards -->
@@ -32,88 +21,13 @@
                         <div class="card shadow-sm border-0">
                             <div class="card-body">
                                 <div class="user-picture">
-                                    <img src="https://images.unsplash.com/photo-1495603889488-42d1d66e5523?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=130&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=130" class="shadow-sm rounded-circle" height="130" width="130" />
+                                    <img src="{% static doctor.image|cut:'main_app/static' %}" class="shadow-sm rounded-circle" height="130" width="130" style="position: fixed; " />
                                 </div>
                                 <div class="user-content">
-                                    <h5 class="text-capitalize user-name">{{doctor.username}}</h5>
-                                    <p class=" text-capitalize text-muted small blockquote-footer">{{doctor.shift}}</p>
-                                    <p class="small text-muted mb-0">{{doctor.detail}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4 pt-5">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body">
-                                <div class="user-picture">
-                                    <img src="https://images.unsplash.com/photo-1582003457856-20898dd7e1ea?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=130&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=130" class="shadow-sm rounded-circle" height="130" width="130" />
-                                </div>
-                                <div class="user-content">
-                                    <h5 class="text-capitalize user-name">Alex Carry</h5>
-                                    <p class=" text-capitalize text-muted small blockquote-footer">Web developer</p>
-                                    <p class="small text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet nemo harum repellendus aut itaque. Temporibus quaerat dolores ut, cupiditate molestiae commodi! Distinctio praesentium, debitis aut minima doloribus earum
-                                        quia commodi.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4 pt-5">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body">
-                                <div class="user-picture">
-                                    <img src="https://images.unsplash.com/photo-1492447166138-50c3889fccb1?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=130&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=130" class="shadow-sm rounded-circle" height="130" width="130" />
-                                </div>
-                                <div class="user-content">
-                                    <h5 class="text-capitalize user-name">John Smith</h5>
-                                    <p class=" text-capitalize text-muted small blockquote-footer">Web developer</p>
-                                    <p class="small text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet nemo harum repellendus aut itaque. Temporibus quaerat dolores ut, cupiditate molestiae commodi! Distinctio praesentium, debitis aut minima doloribus earum
-                                        quia commodi.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4 pt-5">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body">
-                                <div class="user-picture">
-                                    <img src="https://i.picsum.photos/id/836/130/130.jpg?hmac=Sot_REUw5W-XSuE6FmCjT9JenhZfiNqZYs3AQbfrZsc" class="shadow-sm rounded-circle" height="130" width="130" />
-                                </div>
-                                <div class="user-content">
-                                    <h5 class="text-capitalize user-name">George Alex</h5>
-                                    <p class=" text-capitalize text-muted small blockquote-footer">Web developer</p>
-
-                                    <p class="small text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet nemo harum repellendus aut itaque. Temporibus quaerat dolores ut, cupiditate molestiae commodi! Distinctio praesentium, debitis aut minima doloribus earum
-                                        quia commodi.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4 pt-5">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body">
-                                <div class="user-picture">
-                                    <img src="https://images.unsplash.com/photo-1495603889488-42d1d66e5523?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=130&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=130" class="shadow-sm rounded-circle" height="130" width="130" />
-                                </div>
-                                <div class="user-content">
-                                    <h5 class="text-capitalize user-name">Carry Johnshon</h5>
-                                    <p class=" text-capitalize text-muted small blockquote-footer">Web developer</p>
-                                    <p class="small text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet nemo harum repellendus aut itaque. Temporibus quaerat dolores ut, cupiditate molestiae commodi! Distinctio praesentium, debitis aut minima doloribus earum
-                                        quia commodi.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4 pt-5">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body">
-                                <div class="user-picture">
-                                    <img src="https://images.unsplash.com/photo-1582003457856-20898dd7e1ea?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=130&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=130" class="shadow-sm rounded-circle" height="130" width="130" />
-                                </div>
-                                <div class="user-content">
-                                    <h5 class="text-capitalize user-name">Alex Carry</h5>
-                                    <p class=" text-capitalize text-muted small blockquote-footer">Web developer</p>
-                                    <p class="small text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet nemo harum repellendus aut itaque. Temporibus quaerat dolores ut, cupiditate molestiae commodi! Distinctio praesentium, debitis aut minima doloribus earum
-                                        quia commodi.</p>
+                                    <h5 class="text-capitalize user-name"> {{ doctor.first_name }} {{ doctor.last_name }}</h5>
+                                    <h6 class="text-capitalize user-name">department: {{doctor.department}}</h6>
+                                    <p class="small text-muted mb-0">{{doctor.description}}</p>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -126,5 +40,5 @@
     </main>
 </body>
 
-{% endfor %}
+{%endfor%}
 {% endblock  %}
