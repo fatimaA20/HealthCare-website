@@ -2,6 +2,7 @@ from django.urls import path
 from . import views # dot(.) here mean root
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # Routes in Express , URLs in Django
@@ -13,7 +14,21 @@ urlpatterns = [
 
     # profile URL's
     path('accounts/profile/<int:user_id>',views.profile , name='profile'),
-    # path('accounts/edit/<int:user_id>', views.edit_patient_profile, name='edit_patient_profile'),
+
+    path('accounts/<int:pk>/edit', views.PasswordChangeView.as_view(), name="change_password"),
+    # path("password_reset", views.password_reset_request, name="password_reset"),
+
+    # password reset 
+    path('password_reset/',auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('password_reset/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('password_reset/done/',auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+
+    path('accounts/edit/<int:user_id>', views.edit_patient_profile, name='edit_patient_profile'),
+    path('edit_admin_profile/<int:user_id>', views.edit_admin_profile, name='edit_admin_profile'),
+    path('edit_doctor_profile/<int:user_id>', views.edit_doctor_profile, name='edit_doctor_profile'),
+
+
 
     # path('accounts/<int:pk>/edit',views.editProfile,name='edit_Profile'),
 

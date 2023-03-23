@@ -21,11 +21,11 @@
                         <div class="card shadow-sm border-0">
                             <div class="card-body">
                                 <div class="user-picture">
-                                    <img src="{% static doctor.image|cut:'main_app/static' %}" class="shadow-sm rounded-circle" height="130" width="130" />
+                                    <img src="{% static doctor.image|cut:'main_app/static' %}" class="shadow-sm rounded-circle" height="130" width="130" style="position: fixed; " />
                                 </div>
                                 <div class="user-content">
                                     <h5 class="text-capitalize user-name"> {{ doctor.first_name }} {{ doctor.last_name }}</h5>
-                                    <h6 class="text-capitalize user-name">department :{{doctor.department}}</h6>
+                                    <h6 class="text-capitalize user-name">department: {{doctor.department}}</h6>
                                     <p class="small text-muted mb-0">{{doctor.description}}</p>
                                    
                                 </div>

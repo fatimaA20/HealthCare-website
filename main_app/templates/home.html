@@ -1,386 +1,363 @@
 {% extends 'base.html' %}
 {% block content %}
-   <!-- slider section -->
-   <div class="slider-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl">
-          <div class="slider-caption w-50 mx-auto text-white text-center">
-            <h4>It is created to watch to health</h4>
-            <h2>Healteh traker app</h2>
+{% load static %}
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<style>
 
-  <div class="number-conuter py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-3 text-center">
-          <h2 class="fw-bold fs-1">Take</h2>
-          <p class="text-muted">Health programar</p>
-        </div>
-        <div class="col-xl-3 text-center">
-          <h2 class="fw-bold fs-1">Care</h2>
-          <p class="text-muted">Health programar</p>
-        </div>
-        <div class="col-xl-3 text-center">
-          <h2 class="fw-bold fs-1">Give</h2>
-          <p class="text-muted">Health programar</p>
-        </div>
-        <div class="col-xl-3 text-center">
-          <h2 class="fw-bold fs-1">Health</h2>
-          <p class="text-muted">Health programar</p>
-        </div>
-      </div>
-    </div>
-  </div>
-{% comment %} 
-  <div class="activeity-section py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-8">
-          <div class="activeity-content">
-            <h1>Activity goals to health your body</h1>
-            <p class="lead ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit sit delectus consequatur, harum dicta vero fuga recusandae quo neque ad nulla at eaque. Tempore itaque quibusdam tempora deserunt nisi expedita!fuga recusandae quo neque ad nulla at eaque. Tempore itaque quibusdam tempora deserunt nisi expedita!
+.title_hospital{
+margin:100px;
+}
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+}
 
-            </p>
-          </div>
-        
 
-        </div>
-        <div class="col-xl-4">
-          <!-- <img src="https://i.ibb.co/xDFys2p/2.png" class=" mw-100 rounded" alt=""> -->
+body {
+	font-family: "Open Sans", sans-serif;
+	font-size: 1rem;
+	line-height: 1.5;
+	letter-spacing: 0.1px;
+	-webkit-font-smoothing: antialiased;
+  /* background-color: white ; */
+  background-image: url(https://images.unsplash.com/photo-1516841273335-e39b37888115?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=847&q=80);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 130%;
+	background-position: 50% top;
+	width: 100%;
+	height: 100%;
+}
 
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="fiture-section py-5">
-      <div class="container">
+h1{
+  font-size: 8rem;
+  text-align: center;
+} 
 
-        <div class="row">
+#carouselExampleCaptions{
+  position: relative;
+  max-width: fit-content;
+}
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
-          <div class="col-xl-4 mb-3">
+html, body {
+  height:100%;
+}
 
-            <div class="fiture-items d-flex align-items-center">
-              <div class="fitute-image h-100">
-                <!-- <img src="https://i.ibb.co/WFk1jFb/022.jpg" alt=""> -->
 
-              </div>
-              <div class="fiture-content p-4">
-                <h4>HEART POINTS</h4>
-                            <p>Activities that get your heart pumping harder have tremendous health benefits for your heart and mind.</p>
-              </div>
-            </div>
+body {
+  margin:0;
+  background:#14b5d1;
+  font-size:1.3em;
+  color:#333;
+  font-family:'Open Sans', sans-serif;
+}
 
-          </div>
-          <div class="col-xl-4 mb-3">
+section {
+  float:left;
+  width:100%;
+  background:#fff;
+  position:relative;
+  box-shadow:0 0 5px 0px #333;
+}
 
-            <div class="fiture-items d-flex align-items-center">
-              <div class="fitute-image h-100">
-                <!-- <img src="https://i.ibb.co/QKBPwqH/mbr-7.png" alt=""> -->
 
-              </div>
-              <div class="fiture-content p-4">
-                <h4>HEART POINTS</h4>
-                            <p>Activities that get your heart pumping harder have tremendous health benefits for your heart and mind.</p>
-              </div>
-            </div>
+/* the important styles */
 
-          </div>
-          <div class="col-xl-4 mb-3">
+.arrow-wrap {
+  position:absolute;
+  z-index:1;
+  left:50%;
+  top:-5em;
+  margin-left:-5em;
+  background:#111;
+  width:10em;
+  height:10em;
+  padding:4em 2em;
+  border-radius:50%;
+  font-size:0.5em;
+  display:block;
+  box-shadow:0px 0px 5px 0px #333;
+}
 
-            <div class="fiture-items d-flex align-items-center">
-              <div class="fitute-image h-100">
-                <!-- <img src="https://i.ibb.co/WFk1jFb/022.jpg" alt=""> -->
+.arrow {
+  float:left;
+  position:relative;
+  width: 0px;
+height: 0px;
+border-style: solid;
+border-width: 3em 3em 0 3em;
+border-color: #ffffff transparent transparent transparent;
+  -webkit-transform:rotate(360deg)
+}
 
-              </div>
-              <div class="fiture-content p-4">
-                <h4>HEART POINTS</h4>
-                            <p>Activities that get your heart pumping harder have tremendous health benefits for your heart and mind.</p>
-              </div>
-            </div>
+.arrow:after {
+  content:'';
+  position:absolute;
+  top:-3.2em;
+  left:-3em;
+  width: 0px;
+height: 0px;
+border-style: solid;
+border-width: 3em 3em 0 3em;
+border-color: #111 transparent transparent transparent;
+  -webkit-transform:rotate(360deg)
+}
 
-          </div>
-          <div class="col-xl-4 mb-3">
 
-            <div class="fiture-items d-flex align-items-center">
-              <div class="fitute-image h-100">
-                <!-- <img src="https://i.ibb.co/cy4XNpX/mbr-5.jpg" alt=""> -->
+.hint {
+  position:absolute;
+  top:0.6em;
+  width:100%;
+  left:0;
+  font-size:2em;
+  font-style:italic;
+  text-align:center;
+  color:#fff;
+  opacity:0;
+}
 
-              </div>
-              <div class="fiture-content p-4">
-                <h4>HEART POINTS</h4>
-                            <p>Activities that get your heart pumping harder have tremendous health benefits for your heart and mind.</p>
-              </div>
-            </div>
 
-          </div>
-          <div class="col-xl-4 mb-3">
+.arrow-wrap:hover .hint {
+  opacity:1;
+}
 
-            <div class="fiture-items d-flex align-items-center">
-              <div class="fitute-image h-100">
-                <!-- <img src="https://i.ibb.co/zFstDkc/mbr-12.png" alt=""> -->
 
-              </div>
-              <div class="fiture-content p-4">
-                <h4>HEART POINTS</h4>
-                            <p>Activities that get your heart pumping harder have tremendous health benefits for your heart and mind.</p>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-xl-4 mb-3">
-
-            <div class="fiture-items d-flex align-items-center">
-              <div class="fitute-image h-100">
-                <!-- <img src="https://i.ibb.co/37jVH8t/mbr-13.jpg" alt=""> -->
-
-              </div>
-              <div class="fiture-content p-4">
-                <h4>HEART POINTS</h4>
-                            <p>Activities that get your heart pumping harder have tremendous health benefits for your heart and mind.</p>
-              </div>
-            </div>
-
-          </div>
-          
-          
-        </div>
-      </div>
-    </div>
-
+  @-webkit-keyframes arrows {
+    0% { top:0; }
+    10% { top:12%; }
+    20% { top:0; }
+    30% { top:12%; }
+    40% { top:-12%; }
+    50% { top:12%; }
+    60% { top:0; }
+    70% { top:12%; }
+    80% { top:-12%; }
+    90% { top:12%; }
+    100% { top:0; }
+  }
   
-           
-          
-        </div>
-      </div>
-    </div>
-    <div class="priceing-section py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-12">
-            <div class="priceing-content text-center">
-              <h1>Start using our app today</h1>
-            <p class="lead mb-5">Being active is important to our health, but how much or what kind of activity do you need?</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xl-6">
-            <div class="priceing-items">
-              <h2>Starter Plan</h2>
-            <p>For simple users</p>
+  .arrow-wrap .arrow {
+    -webkit-animation: arrows 2.8s 0.4s;
+    -webkit-animation-delay: 3s;
+  }
 
-            <ul>
-              <li><span> <i class="fas fa-check"></i> </span>  HEART POINTS</li>
-              <li><span> <i class="fas fa-check"></i> </span>  HEART POINTS</li>
-              <li><span> <i class="fas fa-check"></i> </span>  HEART POINTS</li>
-              <li> <span> <i class="fas fa-times"></i> </span> HEART POINTS</li>
-              <li> <span> <i class="fas fa-times"></i> </span> HEART POINTS</li>
-            </ul>
-            <div class="priceing-items-button text-center mt-5 ">
-              <a href="#" class="btn btn-outline-primary btn-lg"> Get access now</a>
-            </div>
-            </div>
-          </div>
-          <div class="col-xl-6">
-            <div class="priceing-items">
-              <h2>Starter Plan</h2>
-            <p>For simple users</p>
 
-            <ul>
-              <li><span> <i class="fas fa-check"></i> </span>  HEART POINTS</li>
-              <li><span> <i class="fas fa-check"></i> </span>  HEART POINTS</li>
-              <li><span> <i class="fas fa-check"></i> </span>  HEART POINTS</li>
-              <li> <span> <i class="fas fa-times"></i> </span> HEART POINTS</li>
-              <li> <span> <i class="fas fa-times"></i> </span> HEART POINTS</li>
-            </ul>
-            <div class="priceing-items-button text-center mt-5">
-              <a href="#" class=" btn btn-outline-primary btn-lg"> Get access now</a>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="what-do py-5">
+
+
+
+/*  this is the unimportant CSS used just to layout the content  */
+
+
+
+header {
+  float:left;
+  width:100%;
+  padding:2em 4em;
+  color:#fff;
+  height:calc(100% - 3em);
+}
+
+header h1 {
+  margin:0;
+}
+header h3 {
+  margin:0;
+  color: #56dcee ;
+}
+
+header a {
+  color:#56dcee;
+  opacity:0.5;
+  text-decoration:none;
+}
+
+header a:hover {
+  color:#333;
+  opacity:1;
+}
+
+
+.content {
+  float:left;
+  width:70%;
+  margin:0 15%;
+  padding:2em 0;
+}
+
+h1 {
+  font-family:'Maven Pro', sans-serif;
+  font-weight:300;
+  font-size:2.4em;
+}
+
+h2, h3 {
+  font-family:'Maven Pro', sans-serif;
+  font-weight:300;
+  font-size:1.5em;
+  margin-top:2em;
+}
+
+pre {
+  background:#ededed;
+  padding:1em;
+}
+
+p {
+  color:#555;
+  font-size:0.9em;
+}
+
+p a {
+  color:#14b5d1;
+  text-decoration:none;
+}
+
+
+
+
+</style>
+
+<script>
+  //this is where we apply opacity to the arrow
+$(window).scroll( function(){
+
+//get scroll position
+var topWindow = $(window).scrollTop();
+//multipl by 1.5 so the arrow will become transparent half-way up the page
+var topWindow = topWindow * 1.5;
+
+//get height of window
+var windowHeight = $(window).height();
     
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-12">
-         <div class="what-do-content text-center">
-          <h5>Feedback from our users</h5>
-          <h1 class="py-3">What do users say about our application</h1>
-          <span class=""> <i class="fa fa-quote-left" aria-hidden="true"></i></span>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores perspiciatis asperiores ab facere sint obcaecati et necessitatibus eos aperiam molestiae!</p>
+//set position as percentage of how far the user has scrolled 
+var position = topWindow / windowHeight;
+//invert the percentage
+position = 1 - position;
 
-          <div class="image-section clearfix ">
-            <!-- <img src="https://i.ibb.co/SmWGw9R/face1.jpg" class=" float-start rounded-circle" alt=""> -->
-            <div class="image-details float-end">
-          
+//define arrow opacity as based on how far up the page the user has scrolled
+//no scrolling = 1, half-way up the page = 0
+$('.arrow-wrap').css('opacity', position);
 
-            </div>
-          </div>
-         </div>
+});
+
+
+
+
+
+
+//Code stolen from css-tricks for smooth scrolling:
+$(function() {
+$('a[href*=#]:not([href=#])').click(function() {
+  if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+    var target = $(this.hash);
+    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+    if (target.length) {
+      $('html,body').animate({
+        scrollTop: target.offset().top
+      }, 1000);
+      return false;
+    }
+  }
+});
+});
+</script>
+<div class="container">
+	<div class="row mb-4">
+<!-- first div top  -->
+
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans|Maven+Pro:500' rel='stylesheet' type='text/css'>
+
+<header>
+  <div class="title_hospital">
+  <h1>Welcome To Wellness Hospital</h1>
+  <h3>
+    We Take Care Of You
+  </h3>
+</div>
+  <!-- <a href="http://www.robsawyer.me/blog/2013/09/17/scroll-indicator/">robsawyer.me</a> -->
+</header>
+
+
+<section class="main">
+<a class="arrow-wrap" href="#content">
+<span class="arrow"></span>
+<!--<span class="hint">scroll</span>-->
+</a>
+  
+  <div class="content" id="content">
+    <h1>Our Services</h1>
+    <p>
+      To better serve the wide-ranging needs of the community, the modern hospital 
+      has often developed outpatient facilities, as well as emergency, psychiatric, 
+      and rehabilitation services. In addition, “bedless hospitals” provide strictly 
+      ambulatory (outpatient) care and day surgery. 
+    </p>
+    <p>
+      Patients arrive at the facility for short appointments. They may also stay for 
+      treatment in surgical or medical units for part of a day or for a full day, after
+      which they are discharged for follow-up by a primary care health provider.<em>
+      do, in fact,</em> scroll (thus killing the worries about page fold), it still has 
+      become somewhat fashionable to indicate scroll intent.
+    </p>
+    <h2>
+      We Take Care of You
+    </h2>
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="https://images.unsplash.com/photo-1597807037496-c56a1d8bc29a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Diagnostic Services</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
       </div>
     </div>
-    <div class="about-section ">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-6">
-            <div class="history">
-              <h1>Our Team and History</h1>
-            <p class="text-muted lead mt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis perspiciatis vero accusantium excepturi aperiam eius sit quis nobis cupiditate voluptatem tempora a odio, ad, officiis ex harum saepe fuga at modi quibusdam voluptas voluptatum!?</p>
-            </div>
-          </div>
-          <div class="col-xl-6">
-          <div class="dolor">
-            <p class="text-muted lead ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis perspiciatis vero accusantium excepturi aperiam eius sit quis nobis cupiditate voluptatem tempora a odio, ad, officiis ex harum saepe fuga at modi quibusdam voluptas voluptatum!</p>
-          </div>
-            
-          </div>
+                
+      
+    <!-- </pre> -->
+    <h2>All You Need</h2>
+    <p>Be sure to use the correct vendor-prefixes</p>
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="https://images.unsplash.com/photo-1597807037496-c56a1d8bc29a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" class="img-fluid rounded-start" alt="...">
         </div>
-        <div class="row">
-          <div class="col-xl-3">
-              <div class="programmer ">
-                <div class="card shadow">
-                  <img src="https://i.ibb.co/SmWGw9R/face1.jpg" class="rounded-circle" alt="">
-                  <div class="card-body">
-                    
-                     <div class="card-body">
-                      <h4 class="card-title">Jason Doe</h4>
-                   
-              
-                      <h6 class="card-subtitle mb-3">Programmer</h6>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                      
-                      <a href="#" class="btn btn-light shadow mb-3">Website</a>
-                     </div>
-                   
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3">
-              <div class="programmer ">
-                <div class="card shadow">
-                  <img src="https://i.ibb.co/SmWGw9R/face1.jpg" class="rounded-circle" alt="">
-                  <div class="card-body">
-                    
-                     <div class="card-body">
-                      <h4 class="card-title">Jason Doe</h4>
-                   
-              
-                      <h6 class="card-subtitle mb-3">Programmer</h6>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                      
-                      <a href="#" class="btn btn-light shadow mb-3">Website</a>
-                     </div>
-                   
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3">
-              <div class="programmer ">
-                <div class="card shadow">
-                  <img src="https://i.ibb.co/SmWGw9R/face1.jpg" class="rounded-circle" alt="">
-                  <div class="card-body">
-                    
-                     <div class="card-body">
-                      <h4 class="card-title">Jason Doe</h4>
-                   
-              
-                      <h6 class="card-subtitle mb-3">Programmer</h6>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                      
-                      <a href="#" class="btn btn-light shadow mb-3">Website</a>
-                     </div>
-                   
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3">
-              <div class="programmer ">
-                <div class="card shadow">
-                  <img src="https://i.ibb.co/SmWGw9R/face1.jpg" class="rounded-circle" alt="">
-                  <div class="card-body">
-                    
-                     <div class="card-body">
-                      <h4 class="card-title">Jason Doe</h4>
-                   
-              
-                      <h6 class="card-subtitle mb-3">Programmer</h6>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                      
-                      <a href="#" class="btn btn-light shadow mb-3">Website</a>
-                     </div>
-                   
-                  </div>
-                </div>
-              </div>
-            </div>
-  
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Diagnostic Services</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
       </div>
+    </div>
   
-      <!-- <div class="contact-form py-5">
-        <div class="container">
-  
-          <div class="row">
-            <div class="col">
-              <div class="contact-form-header text-center">
-              <p class="lead">We need to know your opinion</p>
-              <h1 >Write to us and we will contact you</h1>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xl-3">
-  
-            </div>
-            <div class="col-xl-6">
-              <div class="form-section mt-5">
-                <div class="card text-center border-0">
-  
-                  <div class="card-body">
-                    <h3 class="card-title my-3">Send us a Message</h3>
-                    <form action="#">
-                      <input type="email" class="form-control form-control-lg mb-3" placeholder="Emails Address">
-                    </form>
-                    <div class="row mb-4">
-                      <div class="col-xl-6">
-                        <input type="text" class="form-control form-control-lg plaintext" placeholder="name">
-                      </div>
-                      <div class="col-xl-6">
-                        <input type="text" class="form-control form-control-lg plaintext" placeholder="Phone number">
-                      </div>
-                    </div>
-                    <textarea name="" class="form-control mb-4" placeholder="Massege"></textarea>
-                    <button class="btn  btn-lg btn-info"> contact us</button>
-  
-                    
-                  </div>
-                 
-  
-                </div>
-              
-              </div>
-  
-            </div>
-            <div class="col-xl-3">
-              
-            </div>
-          </div>
-        </div>
-      </div> --> {% endcomment %}
+
+    
+</section>
+
+
+
+
+	</div>
+</div>
+
+
+
+
+
 
 {% endblock %}

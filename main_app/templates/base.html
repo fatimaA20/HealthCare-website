@@ -1,4 +1,19 @@
 {% load static %}
+
+
+<style>
+.navbar{
+  background-color: white;
+  display: block;
+}
+.nav-item {
+padding:2px;;
+margin:0.5px;
+font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+}
+
+</style>
 <!doctype html>
 <html lang="en">
   <head>
@@ -23,13 +38,14 @@
   <body>
     <!-- logo image and size  -->
     <div class="header">
-      <nav class="navbar navbar-expand-lg navbar-light bg-info bg-body-tertiar " >
+      <nav class="navbar navbar-expand-lg navbar-light bg-light bg-body-tertiar " >
         <div class="container-fluid">
           <!-- logo size -->
           <a class="navbar-brand" href="{% url 'home'%}" >
-            <img src="https://i.ibb.co/YdTBsYx/DR-Roberts-Health-Clinic-1-removebg-preview-1.png" width="200" height="200" >      
+            <img src="https://i.ibb.co/YdTBsYx/DR-Roberts-Health-Clinic-1-removebg-preview-1.png" width="200" height="200">      
           </a>
           <!-- navbar content -->
+
                 <div class="collapse navbar-collapse justify-content-between ms-5" id="navbarSupportedContent">
                   <ul class="navbar-nav nav-info ms-5 mb-2 mb-lg-1  sanjid-manu ">
                     <ul class="nav nav-tabs">
@@ -96,12 +112,25 @@
                   
                 </div>
                 <ul class="nav-item">
+                  		<div class="col-md-1">
+
                   <a href="{% url 'signup'%}" class="btn btn-info">Sign Up</a>
                   <a href="{% url 'login'%}" class="btn btn-info">Login</a>
                   </ul>
                   {%endif%}
 
-
+                  <!-- <ul class="nav">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-globe"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#">English</a>
+                        <a class="dropdown-item" href="#">Arabic</a>
+                      </div>
+                    </li>
+                  </ul> -->
+                </div>
                 </div>
               </div>
             </nav>
@@ -113,8 +142,10 @@
         </main>
     
         <footer>
-          <div class="fixed-bottom container-fluid" style="left:1150px;">All right Reserved, &copy; 2023 Wellness Hospital  &nbsp;</div>
-    
+          <!-- <div class="fixed-bottom container-fluid" style="left:1150px;">All right Reserved, &copy; 2023 Wellness Hospital  &nbsp;</div> -->
+          <div class="col-md-4"> 
+            <p class="text-center bottom-left">Copyright © 2023 Wellness Hospital All Right Reserved.</p>
+          </div>
         </footer>
   </body>
   </html>

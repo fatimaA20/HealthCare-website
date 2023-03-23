@@ -1,6 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Doctor,Patient , appointment
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm,PasswordChangeForm
+from .models import CustomUser, Doctor,Patient,appointment
 
 
 
@@ -88,29 +88,44 @@ class CustomUserCreationForm(UserCreationForm):
 
             return username
 
-class CustomUserChangeForm(UserChangeForm):
-
+class CustomUserChangeForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'mobile_Number', 'image']
-
-
+        fields = ['image','username','first_name','last_name', 'email', 'mobile_Number']
 
 
 class AdminProfileForm(forms.ModelForm):
+    
     class Meta:
         model = CustomUser
-        fields = '__all__'
+        fields = ['username', 'email', 'mobile_Number', 'image']
 
 class PatientProfileForm(forms.ModelForm):
     class Meta:
         model = Patient
         fields = '__all__'
 
+
+class PasswordChangingForm(PasswordChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ['old_password', 'new_password1', 'new_password2']
+
 class DoctorProfileForm(forms.ModelForm):
     class Meta:
         model = Doctor
         fields ='__all__'
+
+class DoctorEditProfileForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields =['first_name','last_name','mobile_Number','email']
+
+# class PatientEditProfileForm
+class PatientEditProfileForm(forms.ModelForm):
+    class Meta:
+        model = Patient
+        fields = ['first_name','last_name','mobile_Number','email','cpr','dof','blood','height','weight','sensitivity']
 
 class AppointmentCreationForm(forms.ModelForm):
     class Meta:
