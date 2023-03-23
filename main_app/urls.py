@@ -14,7 +14,21 @@ urlpatterns = [
 
     # profile URL's
     path('accounts/profile/<int:user_id>',views.profile , name='profile'),
-    path('accounts/<int:pk>/edit', auth_views.PasswordChangeView.as_view(),name='password_change'),
+
+    path('accounts/<int:pk>/edit', views.PasswordChangeView.as_view(), name="change_password"),
+    # path("password_reset", views.password_reset_request, name="password_reset"),
+
+    # password reset 
+    path('password_reset/',auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('password_reset/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('password_reset/done/',auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+
+    path('accounts/edit/<int:user_id>', views.edit_patient_profile, name='edit_patient_profile'),
+    path('edit_admin_profile/<int:user_id>', views.edit_admin_profile, name='edit_admin_profile'),
+    path('edit_doctor_profile/<int:user_id>', views.edit_doctor_profile, name='edit_doctor_profile'),
+
+
 
     # path('accounts/<int:pk>/edit',views.editProfile,name='edit_Profile'),
 

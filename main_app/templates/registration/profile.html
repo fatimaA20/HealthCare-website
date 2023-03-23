@@ -43,6 +43,8 @@
                             {% else %}
                                 <a href="{% url 'edit_doctor_profile' user.id%}"> <button class="btn  btn-lg btn-info">Edit profile</button></a> 
                             {% endif %}  
+                       <a href="{%url 'change_password' user.id%}"> <button class="btn  btn-lg btn-info" style="position:left;">Change Password</button></a> 
+
                         </div>
                       
                     </div>

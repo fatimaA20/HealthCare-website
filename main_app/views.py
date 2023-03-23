@@ -8,6 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView , DetailView
 # these 2 lines was imported to create form of signup
 from django.contrib.auth import login
+
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.contrib.auth.views import PasswordChangeView
@@ -15,8 +16,21 @@ from .forms import CustomUserChangeForm, PasswordChangingForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.urls import reverse_lazy, reverse
-from django import forms
+from django.urls import reverse_lazy
+
+from django.contrib.auth.forms import UserCreationForm 
+from .forms import CustomUserChangeForm,DoctorProfileForm,DoctorEditProfileForm,PatientEditProfileForm
+from django.http import HttpResponseRedirect
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.urls import reverse
+from django.contrib import messages
+# from django.contrib.auth.models import User
+
+
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserChangeForm
+
 
 # for user signup
 from .forms import CustomUserCreationForm,AdminProfileForm,PatientProfileForm
