@@ -15,7 +15,8 @@ from .forms import CustomUserChangeForm, PasswordChangingForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django import forms
 
 # for user signup
 from .forms import CustomUserCreationForm,AdminProfileForm,PatientProfileForm

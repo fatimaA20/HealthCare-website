@@ -14,6 +14,7 @@ urlpatterns = [
 
     # profile URL's
     path('accounts/profile/<int:user_id>',views.profile , name='profile'),
+    path('accounts/<int:pk>/edit', auth_views.PasswordChangeView.as_view(),name='password_change'),
 
     # path('accounts/<int:pk>/edit',views.editProfile,name='edit_Profile'),
 
