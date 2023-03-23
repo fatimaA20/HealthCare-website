@@ -258,19 +258,20 @@
     <div class="card">
       <div class="card__image-holder">
 
-        <img class="card__image" src="{% static department.image|cut:'main_app/static' %}" alt="wave" />
+        <!-- <img src="{% static department.image|cut:'main_app/static' %}" alt="department_image" /> -->
+        <img src="https://images.unsplash.com/photo-1460672985063-6764ac8b9c74?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80" width="300" height="200" alt="department_image" /> 
       </div>
 
       <div class="card-title">
           <span class="left"></span>
           <span class="right"></span>
-        <h2 class="card-title">
+        <h2 class="card-title" style="margin:30px;">
             {{department.name}}
         </h2>
       </div>
 
       <div class="card-flap flap1">
-        <div class="card-description">
+        <div class="card-description" style="margin:30px;">
             Description: {{department.brief}}
         </div>
         </div>
@@ -280,9 +281,9 @@
             {% comment %} {% if user.is_authenticated %} {% endcomment %}
             
             {% if  user.user_role == 'doctor' or 'patient'%}
-            <a href="{% url 'department_doctor' department.id %}" class="btn" style="position:ceneter;">View Doctors</a>
+            <a href="{% url 'department_doctor' department.id %}" class="btn" style="position:ceneter; margin:30px;">View Doctors</a>
             {%elif user.user_role == 'admin'%}
-            <a href="{% url 'departments_detail' department.id%}" class="btn" style="position:ceneter;">View Doctors</a>
+            <a href="{% url 'departments_detail' department.id%}" class="btn" style="position:ceneter; margin:30px;">View Doctors</a>
             {%endif%}
 
             {% comment %} {% endif %} {% endcomment %}

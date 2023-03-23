@@ -8,6 +8,16 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView , DetailView
 # these 2 lines was imported to create form of signup
 from django.contrib.auth import login
+
+from django.core.mail import send_mail, BadHeaderError
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
+from django.contrib.auth.views import PasswordChangeView
+from .forms import CustomUserChangeForm, PasswordChangingForm
+from django.http import HttpResponseRedirect, HttpResponse
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.urls import reverse_lazy
+
 from django.contrib.auth.forms import UserCreationForm 
 from .forms import CustomUserChangeForm,DoctorProfileForm,DoctorEditProfileForm,PatientEditProfileForm
 from django.http import HttpResponseRedirect
@@ -20,6 +30,7 @@ from django.contrib import messages
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm
+
 
 # for user signup
 from .forms import CustomUserCreationForm,AdminProfileForm,PatientProfileForm
@@ -124,6 +135,15 @@ class DoctorsDelete(DeleteView):
 def profile (request , user_id):
    user = CustomUser.objects.get(id=user_id)
    return render(request, 'registration/profile.html',{'user' : user})
+
+# changing password
+class PasswordChangeView(PasswordChangeView):
+   form_class = PasswordChangingForm
+   success_url = reverse_lazy()
+def password_sucess(request):
+   return render(request, 'registration/password_change.html')
+   
+   
    
 
 # def profile_edit(request , user_id):
@@ -222,3 +242,6 @@ def DepartmentDoctor(request, department_id):
    doctors = Doctor.objects.filter(department_id=department_id)
    department = Department.objects.get(id=department_id)
    return render(request, 'main_app/department_doctor.html', {'doctors': doctors, 'department': department})
+
+
+# this reset password 
