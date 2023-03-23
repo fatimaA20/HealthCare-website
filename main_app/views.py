@@ -145,7 +145,6 @@ def password_sucess(request):
    
    
    
-
 # def profile_edit(request , user_id):
 #    user = CustomUser.objects.get(id=user_id)
 #    form = CustomUserChangeForm()
