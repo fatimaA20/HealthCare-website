@@ -36,7 +36,7 @@ urlpatterns = [
     # appointment URL's
     path('appointments/', views.AppointmentsList.as_view(), name='appointments_index'),
     path('appointments/<int:pk>',views.AppointmentsDetail.as_view(),name='appointments_detail'),
-    path('appointments/create', views.AppointmentsCreate.as_view(),name='appointments_create'),
+    path('appointments/create/<int:department_id>/<int:doctor_id>', views.AppointmentsCreate.as_view(),name='appointments_create'),
     path('appointments/<int:pk>/update', views.AppointmentsUpdate.as_view(),name='appointments_update'),
     path('appointments/<int:pk>/delete/', views.AppointmentsDelete.as_view(), name='appointments_delete'),
 

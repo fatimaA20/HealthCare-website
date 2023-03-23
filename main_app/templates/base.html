@@ -26,16 +26,16 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-info bg-body-tertiar " >
         <div class="container-fluid">
           <!-- logo size -->
-          <a class="navbar-brand" >
-            <img src="https://i.ibb.co/YdTBsYx/DR-Roberts-Health-Clinic-1-removebg-preview-1.png" width="200" height="200">      
+          <a class="navbar-brand" href="{% url 'home'%}" >
+            <img src="https://i.ibb.co/YdTBsYx/DR-Roberts-Health-Clinic-1-removebg-preview-1.png" width="200" height="200" >      
           </a>
           <!-- navbar content -->
                 <div class="collapse navbar-collapse justify-content-between ms-5" id="navbarSupportedContent">
                   <ul class="navbar-nav nav-info ms-5 mb-2 mb-lg-1  sanjid-manu ">
                     <ul class="nav nav-tabs">
-                      <li class="nav-item">
+                      {% comment %} <li class="nav-item">
                         <a class="nav-link active" href="{% url 'home'%}">Home</a>
-                      </li>
+                      </li> {% endcomment %}
                       {% if user.is_authenticated %}
                       {% if user.user_role == 'admin'%}
                       <li class="nav-item dropdown">
@@ -66,9 +66,9 @@
                       <li class="nav-item">
                         <a class="nav-link active" href="{% url 'doctors_index'%}"> Doctors </a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link active" href=""> Take an Appoitment </a>
-                      </li>
+                      {% comment %} <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'appointments_create'%}"> Take an Appoitment </a>
+                      </li> {% endcomment %}
                  
                   {% endif %}
                   <ul class="nav nav-tabs">

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Doctor,Patient
+from .models import CustomUser, Doctor,Patient , appointment
 
 
 
@@ -111,3 +111,38 @@ class DoctorProfileForm(forms.ModelForm):
     class Meta:
         model = Doctor
         fields ='__all__'
+
+class AppointmentCreationForm(forms.ModelForm):
+    class Meta:
+        model = appointment
+        fields = ['department', 'doctor', 'day', 'time']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['department'].widget.attrs.update({
+            'class': 'form-control',
+            'required': '',
+            'placeholder': 'Department',
+            'class':'form-control',
+            'id': 'department-select',
+            
+        })
+        self.fields['doctor'].widget.attrs.update({
+            'class': 'form-control',
+            'required': '',
+            'placeholder': 'Doctor',
+            'class':'form-control',
+       
+        })
+        self.fields['day'].widget.attrs.update({
+            'class': 'form-control',
+            'required': '',
+            'placeholder': 'Day',
+            'class':'form-control',
+        })
+        self.fields['time'].widget.attrs.update({
+            'class': 'form-control',
+            'required': '',
+            'placeholder': 'Time',
+            'class':'form-control',
+        })
