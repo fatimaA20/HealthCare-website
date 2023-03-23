@@ -1,4 +1,7 @@
-
+/* 
+body {
+    background-color: grey;
+} */
 .page-footer {
     position: fixed;
     left: 0;
@@ -285,3 +288,15 @@ teal-text{
     background-position: center;
     font-size: large;
 }
+
+
+
+/* home page */
+
+p{
+    background-color: grey;
+}
+body {
+    font-family: "Roboto", sans-serif;
+    padding-top: 70px;
+  }

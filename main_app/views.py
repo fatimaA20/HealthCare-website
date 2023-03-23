@@ -7,10 +7,11 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView , DetailView
 # these 2 lines was imported to create form of signup
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm 
+from django.core.mail import send_mail, BadHeaderError
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.contrib.auth.views import PasswordChangeView
 from .forms import CustomUserChangeForm, PasswordChangingForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse_lazy
@@ -117,7 +118,7 @@ def profile (request , user_id):
    user = CustomUser.objects.get(id=user_id)
    return render(request, 'registration/profile.html',{'user' : user})
 
-
+# changing password
 class PasswordChangeView(PasswordChangeView):
    form_class = PasswordChangingForm
    success_url = reverse_lazy()
@@ -183,3 +184,6 @@ def DepartmentDoctor(request, department_id):
    doctors = Doctor.objects.filter(department_id=department_id)
    department = Department.objects.get(id=department_id)
    return render(request, 'main_app/department_doctor.html', {'doctors': doctors, 'department': department})
+
+
+# this reset password 
