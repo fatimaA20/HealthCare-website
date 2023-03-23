@@ -130,25 +130,11 @@ class PatientEditProfileForm(forms.ModelForm):
 class AppointmentCreationForm(forms.ModelForm):
     class Meta:
         model = appointment
-        fields = ['department', 'doctor', 'day', 'time']
+        # fields = ['department', 'doctor', 'day', 'time']
+        fields = ['day', 'time']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['department'].widget.attrs.update({
-            'class': 'form-control',
-            'required': '',
-            'placeholder': 'Department',
-            'class':'form-control',
-            'id': 'department-select',
-            
-        })
-        self.fields['doctor'].widget.attrs.update({
-            'class': 'form-control',
-            'required': '',
-            'placeholder': 'Doctor',
-            'class':'form-control',
-       
-        })
         self.fields['day'].widget.attrs.update({
             'class': 'form-control',
             'required': '',

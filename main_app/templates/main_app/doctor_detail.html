@@ -19,7 +19,7 @@
 
         {% if user.user_role  == 'patient' %}
         <div class="card-action">
-            {% comment %} <a href="{% url 'appointments_create' doctor.id  doctor.department.id %}">Take an appointment</a> {% endcomment %}
+            <a href="{% url 'appointments_create'  doctor.department.id  doctor.id%}">Take an appointment</a>
           </div>
         {% endif %}
       </div>

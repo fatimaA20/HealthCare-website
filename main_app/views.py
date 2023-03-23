@@ -7,31 +7,21 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # here no edit bcz it just return data from database - No change in DB
 from django.views.generic import ListView , DetailView
 # these 2 lines was imported to create form of signup
-from django.contrib.auth import login
+from django.contrib.auth import login , get_user_model
 
 from django.core.mail import send_mail, BadHeaderError
-from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm,UserChangeForm
 from django.contrib.auth.views import PasswordChangeView
-from .forms import CustomUserChangeForm, PasswordChangingForm
+from .forms import CustomUserChangeForm, PasswordChangingForm , AppointmentCreationForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse_lazy
-
-from django.contrib.auth.forms import UserCreationForm 
 from .forms import CustomUserChangeForm,DoctorProfileForm,DoctorEditProfileForm,PatientEditProfileForm
 from django.http import HttpResponseRedirect
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+
 from django.urls import reverse
 from django.contrib import messages
-# from django.contrib.auth.models import User
-
-
-from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserChangeForm
-
-
 # for user signup
 from .forms import CustomUserCreationForm,AdminProfileForm,PatientProfileForm
 from django.contrib.auth import get_user_model
@@ -143,18 +133,6 @@ class PasswordChangeView(PasswordChangeView):
 def password_sucess(request):
    return render(request, 'registration/password_change.html')
    
-   
-   
-
-# def profile_edit(request , user_id):
-#    user = CustomUser.objects.get(id=user_id)
-#    form = CustomUserChangeForm()
-#    return render(request, 'registration/profile_edit.html',{'user' : user , 'form' : form})
-
-
-
-
-
 
 def edit_admin_profile(request, user_id):
     User = get_user_model()
@@ -208,44 +186,37 @@ def edit_patient_profile(request,user_id):
 
 
 
-# Departments CBV's
-## Departments CBV's
+## Appointments CBV's
 class AppointmentsList(ListView):
   model = appointment
 
-
 class AppointmentsDetail(DetailView):
   model = appointment
-
 
 class AppointmentsCreate(CreateView):
     model = appointment
     form_class = AppointmentCreationForm
     success_url = '/appointments/'
   
-    def get_initial(self):
-        initial = super().get_initial()
-        department_id = self.kwargs.get('department_id')
-        doctor_id = self.kwargs.get('doctor_id')
-        initial['dep_id'] = department_id
-        initial['doctor_id'] = doctor_id
-        return initial
 #  to set patient id in the appointment table 
     def form_valid(self, form):
+        # Set the foreign keys
+        doctor_id = self.kwargs['doctor_id']
+        department_id = self.kwargs['department_id']
+        form.instance.doctor_id = doctor_id
+        form.instance.department_id = department_id
+
+        # Set the patient id
         form.instance.patient_id = self.request.user.id
+
         return super().form_valid(form)
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['department'] = get_object_or_404(Department, id=self.kwargs.get('department_id'))
-        kwargs['doctor'] = get_object_or_404(Doctor, id=self.kwargs.get('doctor_id'))
-        return kwargs
-    
 
 
 class AppointmentsUpdate(UpdateView):
   model = appointment
-  fields = '__all__'
+  fields = ['day' , 'time']
+  success_url = '/appointments/'   
 
 
 class AppointmentsDelete(DeleteView):

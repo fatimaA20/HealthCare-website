@@ -73,7 +73,7 @@ font-family: 'Josefin Sans', sans-serif;
                       </li>
                       {% elif user.user_role == 'Doctor'%}
                       <li class="nav-item">
-                        <a class="nav-link active" href=""> My Schedule </a>
+                        <a class="nav-link active" href="{% url 'appointments_index'%}"> My Schedule </a>
                       </li>
                       {% elif user.user_role == 'patient'%}
                       <li class="nav-item">
@@ -82,9 +82,10 @@ font-family: 'Josefin Sans', sans-serif;
                       <li class="nav-item">
                         <a class="nav-link active" href="{% url 'doctors_index'%}"> Doctors </a>
                       </li>
-                      {% comment %} <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'appointments_create'%}"> Take an Appoitment </a>
-                      </li> {% endcomment %}
+                      <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'appointments_index'%}"> My Appoitment </a>
+                      </li>
+
                  
                   {% endif %}
                   <ul class="nav nav-tabs">
