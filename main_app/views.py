@@ -1,4 +1,5 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect,get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Department ,Doctor , CustomUser ,SHIFTS , appointment , Patient
 # this should be used to class based
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -7,6 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView , DetailView
 # these 2 lines was imported to create form of signup
 from django.contrib.auth import login
+
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.contrib.auth.views import PasswordChangeView
@@ -16,9 +18,25 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse_lazy
 
-# for user signup
-from .forms import CustomUserCreationForm
+from django.contrib.auth.forms import UserCreationForm 
+from .forms import CustomUserChangeForm,DoctorProfileForm,DoctorEditProfileForm,PatientEditProfileForm
+from django.http import HttpResponseRedirect
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.urls import reverse
+from django.contrib import messages
+# from django.contrib.auth.models import User
 
+
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserChangeForm
+
+
+# for user signup
+from .forms import CustomUserCreationForm,AdminProfileForm,PatientProfileForm
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 # Create your views here.
 
@@ -59,7 +77,7 @@ def update_user(pk, form_data):
 
 # Departments CBV's
 class DepartmentsList(ListView):
-  model = Department
+    model = Department
 
 
 class DepartmentsDetail(DetailView):
@@ -93,7 +111,7 @@ class DoctorsDetail(DetailView):
 
 class DoctorsCreate(CreateView):
   model = Doctor
-  fields=['first_name','last_name','username','password','email','mobile_Number','shift','description','department']
+  fields=['first_name','last_name','username','password','email','mobile_Number','description','department']
 
   def form_valid(self, form):
         form.instance.user_role = 'Doctor'  # set the default value for user_role
@@ -127,28 +145,68 @@ def password_sucess(request):
    
    
    
+
 # def profile_edit(request , user_id):
 #    user = CustomUser.objects.get(id=user_id)
 #    form = CustomUserChangeForm()
 #    return render(request, 'registration/profile_edit.html',{'user' : user , 'form' : form})
 
 
-# Appointment
-# def AppointmentList():
-#    pass
-
-# def BookingAppointment(request, user_id):
-#    pass
 
 
-# def profile_update(request , user_id):
-#   #  update profile
-#   user = CustomUser.objects.get(id=user_id)
-#   form = CustomUserChangeForm(request.POST)
-#   if form.is_valid():
-#    form.save()
-#    return HttpResponseRedirect('/profile/')
-  
+
+
+def edit_admin_profile(request, user_id):
+    User = get_user_model()
+    user = User.objects.get(id=user_id)
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST,request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully')
+            return redirect(reverse('profile', kwargs={'user_id': user.id}))
+
+    else:
+        form = CustomUserChangeForm(instance=user)
+        context = {'form': form, 'user': user}
+        return render(request, 'registration/edit_admin_profile.html', context)
+
+
+# edit_doctor_profile
+def edit_doctor_profile(request, user_id):
+   User = get_user_model()
+   user = User.objects.get(id=user_id)
+   if request.method == 'POST':
+      form = DoctorEditProfileForm(request.POST,request.FILES, instance=user)
+      if form.is_valid():
+         form.save()
+         messages.success(request, 'Profile updated successfully')
+         return redirect(reverse('profile', kwargs={'user_id': user.id}))
+   else:
+        form = DoctorEditProfileForm(instance=user)
+   context = {'form': form, 'user': user}
+   return render(request, 'registration/edit_doctor_profile.html', context)
+
+
+def edit_patient_profile(request,user_id):
+   User = get_user_model()
+   user = User.objects.get(id=user_id)
+   if request.method == 'POST':
+      form = PatientEditProfileForm(request.POST,request.FILES, instance=user)
+      if form.is_valid():
+         form.save()
+         messages.success(request, 'Profile updated successfully')
+         return redirect(reverse('profile', kwargs={'user_id': user.id}))
+   else:
+        form = PatientEditProfileForm(instance=user)
+   context = {'form': form, 'user': user}
+   return render(request, 'registration/edit_doctor_profile.html', context)
+
+
+
+
+
+
 
 # Departments CBV's
 ## Departments CBV's
