@@ -4,15 +4,20 @@
 {% comment %} we add this if statement bcz we use this page to edit and creata toy  {% endcomment %}
 
 {% if object %}
-  <h1>Edit <span class="teal-text">{{ object.name }}</span></h1>
+  <h1>Edit Appointment</h1>
 {% else %}
   <h1 class="dpp">Take Appointments</h1>
 {% endif %}
+<br>
+<h5><span class="teal-text"><b>Patient name : </b>{{  request.user.username}}</span></h5>
 
+<hr>
+<br>
 <form action="" method="post" enctype="multipart/form-data">
   <!-- Django requires the following for security purposes -->
   {% csrf_token %}
   <table>{{ form.as_table }}</table>
+  <br>
   <input type="submit" value="Submit!" class="btn">
 </form>
 {% endblock %}
