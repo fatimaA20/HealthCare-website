@@ -72,19 +72,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'HealthCare.wsgi.application'
 
+import os
+from dotenv import load_dotenv
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
+# Load environment variables from .env file
+load_dotenv()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'f6iimali/HealthCare',
-        'USER': 'f6iimali',
-        'PASSWORD': 'v2_42BW6_p4kuYNGKq8xt7d2izXgE7yE',
-        'HOST':'db.bit.io'
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT', default='5432'),
     }
 }
+
+
 
 
 # Password validation
