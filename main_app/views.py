@@ -101,7 +101,8 @@ class DoctorsDetail(DetailView):
 
 class DoctorsCreate(CreateView):
   model = Doctor
-  fields=['first_name','last_name','username','password','email','mobile_Number','description','department']
+  # fields = '__all__'
+  fields=['first_name','last_name','username','password','email','mobile_Number','description','department','image']
 
   def form_valid(self, form):
         form.instance.user_role = 'Doctor'  # set the default value for user_role

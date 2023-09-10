@@ -7,6 +7,33 @@
       margin: auto;
     
   }
+
+  /* Add this to your existing CSS styles */
+
+.btn-style {
+  background-color: @teal; /* Set the button background color */
+  border-radius: 4px;
+  box-shadow: 0 2px 0px 0 rgba(0, 0, 0, 0.25);
+  color: @white;
+  display: inline-block;
+  padding: 6px 30px 8px;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out; /* Add a smooth transition effect */
+}
+
+.btn-style:hover {
+  background-color: lighten(@teal, 2.5); /* Change the background color on hover */
+  transform: translateY(-2px); /* Add a slight vertical hover effect */
+  box-shadow: 0px 8px 2px 0 rgba(0, 0, 0, 0.075); /* Add a box shadow on hover */
+}
+
+.btn-style:active {
+  background-color: darken(@teal, 2.5); /* Change the background color when active/clicked */
+  transform: translateY(1px); /* Add a click effect */
+  box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.25);
+}
+
   
   body {
     background: @lightBG;
@@ -150,21 +177,7 @@
     }
     
   }
-  /* 
-  div.cards.showing {
-    div.card; {
-      cursor: pointer;
-      opacity: 0.6;
-      transform: scale(0.88);
-    }
-  } */
-  
-  /* .no-touch  div.cards.showing {
-    div.card; ::hover {
-      opacity: 0.94;
-      transform: scale(0.92);
-    }
-  } */
+
   
   div.card.show {
     opacity: 1 !important;
@@ -193,60 +206,85 @@
     div.flap2 {
       transition: all 0.3s 0.2s ease-out;
     }
-  
+    /* Add this to your existing CSS styles */
+
+.heading-style {
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  color: #333; /* Change the color to your preference */
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.heading-style:hover {
+  color: #007bff; /* Change the hover color to your preference */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Adjust the shadow for hover effect */
+}
+
+
+
+.card-title-style {
+  text-align: center; /* Center align the text */
+  font-weight: bold; /* Make the text bold */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Add a subtle text shadow */
+  color: #333; /* Change the color to your preference */
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.card-title-style:hover {
+  color: #007bff; /* Change the hover color to your preference */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Adjust the shadow for hover effect */
+}
     </style>
     <!-- Test -->
-<body class="bg-light">
-    <main>
+    <body class="bg-light">
+      <main>
         <!-- Ui cards -->
         <section id="cards">
-            <div class="container py-2">
-                <div class="row pb-4">
-                    <div class="col-12 text-center">
-                        <div class="display-3">Our Departments</div>
-
-  <div class="cards">
-    {% for department in department_list %}
-    <div class="card">
-      <div class="card__image-holder">
-
-        <!-- <img src="{% static department.image|cut:'main_app/static' %}" alt="department_image" /> -->
-        <img src="https://images.unsplash.com/photo-1460672985063-6764ac8b9c74?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80" width="300" height="200" alt="department_image" /> 
-      </div>
-
-      <div class="card-title">
-          <span class="left"></span>
-          <span class="right"></span>
-        <h2 class="card-title" style="margin:30px;">
-            {{department.name}}
-        </h2>
-      </div>
-
-      <div class="card-flap flap1">
-        <div class="card-description" style="margin:30px;">
-            Description: {{department.brief}}
-        </div>
-        </div>
-
-        <div class="card-flap flap2">
-          <div class="card-actions">
-            {% comment %} {% if user.is_authenticated %} {% endcomment %}
+          <div class="container py-2">
+            <div class="row pb-4">
+              <div class="col-12 text-center">
+                <div class="display-3 heading-style">Our Departments</div> </br> </br>
+              </div>
+              
+            </br> </br>
             
-            {% if  user.user_role == 'doctor' or 'patient'%}
-            <a href="{% url 'department_doctor' department.id %}" class="btn" style="position:ceneter; margin:30px;">View Doctors</a>
-            {%elif user.user_role == 'admin'%}
-            <a href="{% url 'departments_detail' department.id%}" class="btn" style="position:ceneter; margin:30px;">View Doctors</a>
-            {%endif%}
-
-            {% comment %} {% endif %} {% endcomment %}
+              
+              {% for department in department_list %}
+                <div class="col-md-4 col-sm-6">
+                  <div class="card">
+                    <div class="card__image-holder">
+                      <img src="{% static department.image|cut:'main_app/static' %}" alt="department_image" width="300" height="200"  />
+                    </div>
+                    <div class="card-title">
+                      <span class="left"></span>
+                      <span class="right"></span>
+                      <h2 class="card-title card-title-style" style="margin:30px;">
+                        {{department.name}}
+                      </h2>
+                    </div>
+                    <div class="card-flap flap1">
+                      <div class="card-description" style="margin:30px;">
+                         {{department.brief}}
+                      </div>
+                    </div>
+                    <div class="card-flap flap2">
+                      <div class="card-actions text-center">
+                        {% if user.user_role == 'doctor' or user.user_role == 'patient' %}
+                          <a href="{% url 'department_doctor' department.id %}" class="btn" style="position:ceneter; margin:30px;">View Doctors</a>
+                        {% elif user.user_role == 'admin' %}
+                          <a href="{% url 'departments_detail' department.id%}" class="btn" style="position:ceneter; margin:30px;">Details</a>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+              
+            </div>
           </div>
-        </div>
-      </div>
-
-  
-        </div>
-
-{%endfor%}
+        </section>
+      </main>
+    </body>
 {% comment %} the end of cards {% endcomment %}
     </div>
 {% endblock  %}

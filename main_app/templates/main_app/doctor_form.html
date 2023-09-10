@@ -1,8 +1,69 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<style>
+  /* Add your custom CSS styles here */
+  h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
 
-{% comment %} we add this if statement bcz we use this page to edit and creata toy  {% endcomment %}
+  .teal-text {
+    color: #007bff;
+  }
+
+  .btn-container {
+    text-align: center;
+  }
+
+  .add-doctor-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .add-doctor-btn:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: none;
+    padding: 8px;
+    text-align: left;
+  }
+
+    /* Style the submit input */
+    .btn {
+      display: block;
+      margin: 0 auto;
+      background-color: #007bff;
+      color: #fff;
+      padding: 15px 30px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+  
+    .btn:hover {
+      background-color: #0056b3;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+</style>
+
 
 {% if object%}
 <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
@@ -11,7 +72,7 @@
 {% endif %}
 
 
-  <form action="{% url 'doctors_create'%}" method="post" >
+<form action="" method="post" enctype="multipart/form-data">
     <!-- Django requires the following for security purposes -->
     {% csrf_token %}
 

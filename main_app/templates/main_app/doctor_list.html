@@ -3,6 +3,37 @@
 {% load widget_tweaks %}
 {% load static %}
 
+<style>
+    /* Custom CSS for button styling */
+    .more-details-button {
+        font-size: 16px; /* Increase font size for a larger button */
+        padding: 10px 20px; /* Adjust padding for a larger button */
+        background-color: #007bff; /* Change background color */
+        color: #fff; /* Change text color */
+        border: none;
+        border-radius: 5px; /* Add rounded corners */
+        transition: background-color 0.3s ease; /* Add hover effect */
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .more-details-button:hover {
+        background-color: 66a3ff; /* Change background color on hover */
+    }
+
+    .heading-style {
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        color: #333; /* Change the color to your preference */
+        transition: color 0.3s, text-shadow 0.3s;
+      }
+      
+      .heading-style:hover {
+        color: #007bff; /* Change the hover color to your preference */
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Adjust the shadow for hover effect */
+      }
+</style>
+
 <body class="bg-light">
     <main>
         <!-- Ui cards -->
@@ -10,35 +41,39 @@
             <div class="container py-2">
                 <div class="row pb-4">
                     <div class="col-12 text-center">
-                        <div class="display-3">All Doctors</div>
-                        {% for doctor in doctor_list %}
-                        <a href="{% url 'doctors_detail' doctor.id %}">
+                        <div class="display-3 heading-style" >All Doctors</div>
                     </div>
                 </div>
                 <!-- cards -->
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-4 pt-5">
+                    {% for doctor in doctor_list %}
+                    <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card shadow-sm border-0">
                             <div class="card-body">
-                                <div class="user-picture">
-                                    <img src="{% static doctor.image|cut:'main_app/static' %}" class="shadow-sm rounded-circle" height="130" width="130" style="position: fixed; " />
-                                </div>
-                                <div class="user-content">
-                                    <h5 class="text-capitalize user-name"> {{ doctor.first_name }} {{ doctor.last_name }}</h5>
-                                    <h6 class="text-capitalize user-name">department: {{doctor.department}}</h6>
-                                    <p class="small text-muted mb-0">{{doctor.description}}</p>
-                                   
+                                <div class="text-center">
+                                    <div class="user-picture">
+                                        <a href="{% url 'doctors_detail' doctor.id %}">
+                                            <img src="{% static doctor.image|cut:'main_app/static' %}" height="130" width="130" />
+                                        </a>
+                                    </div>
+                                    <div class="user-info">
+                                        <h5 class="text-capitalize user-name">{{ doctor.first_name }} {{ doctor.last_name }}</h5>
+                                        <h6 class="text-capitalize user-name">Department: {{ doctor.department }}</h6>
+                                        <p class="small text-muted mb-0">{{ doctor.description }}</p>
+                                        <br>
+                                        <a href="{% url 'doctors_detail' doctor.id %}" class="more-details-button">More Details</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
+                <!-- /cards -->
             </div>
-            <!-- /cards -->
         </section>
         <!-- /Ui cards -->
     </main>
 </body>
 
-{%endfor%}
 {% endblock  %}

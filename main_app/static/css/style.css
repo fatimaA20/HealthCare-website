@@ -259,11 +259,14 @@ a{
 	margin-top: 121px;
 }
 .card img {
+    /* max-width: 100%; */
 	width: 130px;
 	height: auto;
 	margin-top: -68px;
 	margin-left: 13px;
 }
+
+
 /* form section */
 .form-section .card {
 	box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.8);

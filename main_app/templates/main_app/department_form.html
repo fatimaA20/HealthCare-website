@@ -1,24 +1,66 @@
 {% extends 'base.html' %}
+
 {% block content %}
+<div class="container">
+  {% comment %} Add this if statement because we use this page to edit and create a department {% endcomment %}
+  {% if object %}
+    <h1 class="teal-text">Edit {{ object.name }}</h1>
+  {% else %}
+    <h1 class="dpp">Add Department</h1>
+  {% endif %}
 
-{% comment %} we add this if statement bcz we use this page to edit and creata toy  {% endcomment %}
-
-{% if object%}
-<h1>Edit <span class="teal-text">{{object.name}}</span></h1>
-{%else%}
-<h1 class="dpp">Add Department</h1>
-{% endif %}
-
-
-
-  <form action="" method="post" enctype = 'multipart/form-data'>
-    <!-- Django requires the following for security purposes -->
+  <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-   
-    <table> {{ form.as_table }} </table>
-    
-    <input type="submit" value="Submit!" class="btn">
-  
-</form>
 
+    <div class="form-group">
+      <label for="{{ form.name.id_for_label }}">Department Name:</label>
+      {{ form.name }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.brief.id_for_label }}">Description:</label>
+      {{ form.brief }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.image.id_for_label }}">Department Image:</label>
+      {{ form.image }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<style>
+  /* Add your custom CSS styles here */
+  .teal-text {
+    color: #007bff; /* Teal color for headings */
+  }
+
+  .dpp {
+    color: #333; /* Dark gray color for headings */
+  }
+
+  .form-group {
+    margin-bottom: 20px; /* Spacing between form fields */
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  /* Style the submit button */
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  /* Add hover effect to the submit button */
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+</style>
 {% endblock %}
